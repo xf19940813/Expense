@@ -1,0 +1,22 @@
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-19 13:12:25,867                                   
+【执行时间】[105763]毫秒                                   
+【错误位置】dy.Api.WeChat.UserController 属性[(null)]                                   
+【错误描述】添加用户OpenId失败!                                   
+【错误详情】
+System.Exception: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Object -> Wx_UserOpenId
+System.Object -> dy.Model.User.Wx_UserOpenId
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-19 18:06:53,402                                   
+【执行时间】[39687]毫秒                                   
+【错误位置】dy.Api.WeChat.UserController 属性[(null)]                                   
+【错误描述】添加用户OpenId失败!                                   
+【错误详情】
+System.Exception: Object reference not set to an instance of an object.

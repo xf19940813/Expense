@@ -1,0 +1,9 @@
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-12 16:16:51,915                                   
+【执行时间】[35440]毫秒                                   
+【错误位置】dy.Api.Controllers.AuthController 属性[(null)]                                   
+【错误描述】获取token失败!                                   
+【错误详情】
+System.Exception: OpenId为空，获取token失败！

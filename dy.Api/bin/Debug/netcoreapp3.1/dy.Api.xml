@@ -1,0 +1,882 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dy.Api</name>
+    </assembly>
+    <members>
+        <member name="T:dy.Api.AOP.CacheAOPbase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:dy.Api.AOP.CacheAOPbase.Intercept(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            AOP的拦截方法
+            </summary>
+            <param name="invocation"></param>
+        </member>
+        <member name="M:dy.Api.AOP.CacheAOPbase.CustomCacheKey(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            自定义缓存的key
+            </summary>
+            <param name="invocation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.AOP.CacheAOPbase.GetArgumentValue(System.Object)">
+            <summary>
+            object 转 string
+            </summary>
+            <param name="arg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.AOP.RedisCacheAOP">
+            <summary>
+            面向切面的缓存使用
+            </summary>
+        </member>
+        <member name="M:dy.Api.AOP.RedisCacheAOP.#ctor(dy.Common.Redis.IRedisCacheManager)">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+        </member>
+        <member name="M:dy.Api.AOP.RedisCacheAOP.Intercept(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            
+            </summary>
+            <param name="invocation"></param>
+        </member>
+        <member name="T:dy.Api.AutoMapper.AutoMapperProfile">
+            <summary>
+            实体模型关系映射
+            </summary>
+        </member>
+        <member name="M:dy.Api.AutoMapper.AutoMapperProfile.#ctor">
+            <summary>
+            配置构造函数，用来创建关系映射
+            </summary>
+        </member>
+        <member name="T:dy.Api.Controllers.AuthController">
+            <summary>
+            获取Token
+            </summary>
+        </member>
+        <member name="M:dy.Api.Controllers.AuthController.#ctor(dy.Common.Redis.IRedisCacheManager,dy.Api.Log.ILoggerHelper)">
+            <summary>
+            
+            </summary>
+            <param name="redisCacheManager"></param>
+            <param name="loggerHelper"></param>
+        </member>
+        <member name="M:dy.Api.Controllers.AuthController.GenerateJWTToken">
+            <summary>
+            获取Token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.Controllers.AuthController.ParseToken">
+            <summary>
+            解析Token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.Controllers.BaseController">
+            <summary>
+            自定义路由模版
+            用于解决swagger文档No operations defined in spec!问题
+            </summary>
+        </member>
+        <member name="M:dy.Api.Controllers.BaseController.SetSession(System.String,System.String)">
+            <summary>
+            设置Session值
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:dy.Api.Controllers.BaseController.GetSession(System.String)">
+            <summary>
+            获取Session值
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.Controllers.TestController">
+            <summary>
+            测试Api
+            </summary>
+        </member>
+        <member name="M:dy.Api.Controllers.TestController.#ctor(dy.IServices.IAdvertisementServices,dy.Api.Log.ILoggerHelper,dy.Common.Redis.IRedisCacheManager)">
+            <summary>
+            
+            </summary>
+            <param name="advertisementService"></param>
+            <param name="loggerHelper"></param>
+            <param name="redisCacheManager"></param>
+        </member>
+        <member name="M:dy.Api.Controllers.TestController.GetAdvertisementAsync(System.Int32,System.Int32)">
+            <summary>
+            分页查询数据
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.Controllers.TestController.PostAdvertisementAsync(dy.Model.Test.AdvertisementInput)">
+            <summary>
+            添加数据
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.Controllers.TestController.LogTest">
+            <summary>
+            测试日志
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.Filter.GlobalExceptionsFilter">
+            <summary>
+            全局异常过滤器
+            </summary>
+        </member>
+        <member name="M:dy.Api.Filter.GlobalExceptionsFilter.#ctor(Microsoft.Extensions.Hosting.IHostEnvironment,dy.Api.Log.ILoggerHelper)">
+            <summary>
+            
+            </summary>
+            <param name="env"></param>
+            <param name="loggerHelper"></param>
+        </member>
+        <member name="M:dy.Api.Filter.GlobalExceptionsFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:dy.Api.Filter.GlobalExceptionsFilter.InternalServerErrorObjectResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:dy.Api.Filter.GlobalExceptionsFilter.InternalServerErrorObjectResult.#ctor(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="T:dy.Api.Filter.GlobalExceptionsFilter.JsonErrorResponse">
+            <summary>
+            返回错误信息
+            </summary>
+        </member>
+        <member name="P:dy.Api.Filter.GlobalExceptionsFilter.JsonErrorResponse.Message">
+            <summary>
+            生产环境的消息
+            </summary>
+        </member>
+        <member name="P:dy.Api.Filter.GlobalExceptionsFilter.JsonErrorResponse.DevelopmentMessage">
+            <summary>
+            开发环境的消息
+            </summary>
+        </member>
+        <member name="T:dy.Api.JsonConv.DatetimeJsonConverter">
+            <summary>
+            时间格式格式化
+            </summary>
+        </member>
+        <member name="T:dy.Api.JsonConv.LowercasePolicy">
+            <summary>
+            返回对象全小写
+            </summary>
+        </member>
+        <member name="T:dy.Api.Log.ILoggerHelper">
+            <summary>
+            日志接口
+            </summary>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Debug(System.Object,System.String)">
+            <summary>
+            调试信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Debug(System.Object,System.String,System.Object[])">
+            <summary>
+            调试信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="ps">ps</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Debug(System.Type,System.String)">
+            <summary>
+            调试信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Info(System.Object,System.Object)">
+            <summary>
+            关键信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Info(System.Type,System.Object)">
+            <summary>
+            关键信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Warn(System.Object,System.Object)">
+            <summary>
+            警告信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Warn(System.Type,System.Object)">
+            <summary>
+            警告信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Error(System.Object,System.Object)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Error(System.Type,System.Object)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Fatal(System.Object,System.Object)">
+            <summary>
+            失败信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Fatal(System.Type,System.Object)">
+            <summary>
+            失败信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Debug(System.Object,System.Object,System.Exception)">
+            <summary>
+            调试信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Debug(System.Type,System.Object,System.Exception)">
+            <summary>
+            调试信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Info(System.Object,System.Object,System.Exception)">
+            <summary>
+            关键信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Info(System.Type,System.Object,System.Exception)">
+            <summary>
+            关键信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Warn(System.Object,System.Object,System.Exception)">
+            <summary>
+            警告信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Warn(System.Type,System.Object,System.Exception)">
+            <summary>
+            警告信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Error(System.Object,System.Object,System.Exception)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Error(System.Type,System.Object,System.Exception)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Fatal(System.Object,System.Object,System.Exception)">
+            <summary>
+            失败信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.ILoggerHelper.Fatal(System.Type,System.Object,System.Exception)">
+            <summary>
+            失败信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="T:dy.Api.Log.LogHelper">
+            <summary>
+            日志帮助实现类
+            </summary>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.GetLogger(System.Type)">
+            <summary>
+            获取记录器
+            </summary>
+            <param name="source">soruce</param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Debug(System.Object,System.String)">
+            <summary>
+            调试信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Debug(System.Object,System.String,System.Object[])">
+            <summary>
+            调试信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="ps">ps</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Debug(System.Type,System.String)">
+            <summary>
+            调试信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Info(System.Object,System.Object)">
+            <summary>
+            关键信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Info(System.Type,System.Object)">
+            <summary>
+            关键信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Warn(System.Object,System.Object)">
+            <summary>
+            警告信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Warn(System.Type,System.Object)">
+            <summary>
+            警告信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Error(System.Object,System.Object)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Error(System.Type,System.Object)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Fatal(System.Object,System.Object)">
+            <summary>
+            失败信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Fatal(System.Type,System.Object)">
+            <summary>
+            失败信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Debug(System.Object,System.Object,System.Exception)">
+            <summary>
+            调试信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Debug(System.Type,System.Object,System.Exception)">
+            <summary>
+            调试信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Info(System.Object,System.Object,System.Exception)">
+            <summary>
+            关键信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Info(System.Type,System.Object,System.Exception)">
+            <summary>
+            关键信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Warn(System.Object,System.Object,System.Exception)">
+            <summary>
+            警告信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Warn(System.Type,System.Object,System.Exception)">
+            <summary>
+            警告信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Error(System.Object,System.Object,System.Exception)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Error(System.Type,System.Object,System.Exception)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Fatal(System.Object,System.Object,System.Exception)">
+            <summary>
+            失败信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="M:dy.Api.Log.LogHelper.Fatal(System.Type,System.Object,System.Exception)">
+            <summary>
+            失败信息
+            </summary>
+            <param name="source">source</param>
+            <param name="message">message</param>
+            <param name="exception">ex</param>
+        </member>
+        <member name="T:dy.Api.Middleware.CustomExceptionMiddleware">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:dy.Api.Middleware.CustomExceptionMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,dy.Api.Log.ILoggerHelper)">
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:dy.Api.Middleware.CustomExceptionMiddleware.HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            
+        </member>
+        <member name="T:dy.Api.Middleware.CustomExceptionMiddlewareExtensions">
+            <summary>
+            Extension method used to add the middleware to the HTTP request pipeline.
+            </summary>
+        </member>
+        <member name="M:dy.Api.Middleware.CustomExceptionMiddlewareExtensions.UseCustomExceptionMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:dy.Api.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:dy.Api.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.SetUp.AuthorizationSetup">
+            <summary>
+            注册服务
+            </summary>
+        </member>
+        <member name="T:dy.Api.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:dy.Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:dy.Api.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:dy.Api.Startup.repository">
+            <summary>
+            log4net 仓储库
+            </summary>
+        </member>
+        <member name="M:dy.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:dy.Api.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:dy.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+        <member name="T:dy.Api.WeChat.ExpenseController">
+            <summary>
+            报销管理
+            </summary>
+        </member>
+        <member name="M:dy.Api.WeChat.ExpenseController.#ctor(dy.IServices.IExpenseServices,dy.Api.Log.ILoggerHelper)">
+            <summary>
+            报销管理
+            </summary>
+            <param name="expenseServices"></param>
+            <param name="loggerHelper"></param>
+        </member>
+        <member name="M:dy.Api.WeChat.ExpenseController.PostExpenseInfoAsync(dy.Model.Dto.AddExpenseInfoDto)">
+            <summary>
+            添加消费信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.ExpenseController.GetExpenseInfoAsync(System.String,System.Nullable{System.Int16},System.Int32,System.Int32)">
+            <summary>
+            我的报销分页查询
+            </summary>
+            <param name="teamId">团队Id</param>
+            <param name="Status">状态</param>
+            <param name="pageIndex">页码</param>
+            <param name="pageSize">一页显示多少条</param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.ExpenseController.AuditAsync(System.String)">
+            <summary>
+            审核
+            </summary>
+            <param name="Id">报销信息Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.ExpenseController.FinishedAsync(System.String)">
+            <summary>
+            报销完结
+            </summary>
+            <param name="Id">报销信息Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.WeChat.QRCodeController">
+            <summary>
+            图像处理
+            </summary>
+        </member>
+        <member name="F:dy.Api.WeChat.QRCodeController.basepath">
+            <summary>
+            图片保存路径
+            </summary>
+        </member>
+        <member name="M:dy.Api.WeChat.QRCodeController.#ctor(dy.Api.Log.ILoggerHelper)">
+            <summary>
+            图像处理
+            </summary>
+            <param name="loggerHelper"></param>
+        </member>
+        <member name="M:dy.Api.WeChat.QRCodeController.GetQRCodeInfo(System.String)">
+            <summary>
+            获取发票信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.QRCodeController.UploadFile(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            上传文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.WeChat.SettingController">
+            <summary>
+            设置
+            </summary>
+        </member>
+        <member name="M:dy.Api.WeChat.SettingController.#ctor(dy.IServices.IRoleServices,dy.Common.Redis.IRedisCacheManager,dy.Api.Log.ILoggerHelper)">
+            <summary>
+            设置
+            </summary>
+            <param name="roleServices"></param>
+            <param name="redisCacheManager"></param>
+            <param name="loggerHelper"></param>
+        </member>
+        <member name="M:dy.Api.WeChat.SettingController.PostRoleAsync(dy.Model.Dto.AddRoleDto)">
+            <summary>
+            添加角色
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.SettingController.UpdateTeamMemberRoleAsync(dy.Model.Dto.UpdateRoleDto)">
+            <summary>
+            修改成员角色
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.SettingController.GetRoleList(System.String)">
+            <summary>
+            角色列表
+            </summary>
+            <param name="teamId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.WeChat.TeamController">
+            <summary>
+            团队管理
+            </summary>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamController.#ctor(dy.IServices.ITeamServices,dy.Common.Redis.IRedisCacheManager,dy.Api.Log.ILoggerHelper)">
+            <summary>
+            团队管理
+            </summary>
+            <param name="teamServices"></param>
+            <param name="redisCacheManager"></param>
+            <param name="loggerHelper"></param>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamController.PostTeamAsync(dy.Model.Dto.AddTeamDto)">
+            <summary>
+            添加团队
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamController.GetTeamListAsync(System.Int32,System.Int32)">
+            <summary>
+            团队列表
+            </summary>
+            <param name="pageIndex">页码</param>
+            <param name="pageSize">一页多少条</param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamController.UpdateTeamAsync(dy.Model.Dto.UpdateTeamDto)">
+            <summary>
+            修改团队信息
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamController.DeleteByIdAsync(System.String)">
+            <summary>
+            移除团队
+            </summary>
+            <param name="Id">团队Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamController.GetTeamByIdAsync(System.String)">
+            <summary>
+            获取团队Id获取团队信息
+            </summary>
+            <param name="teamId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamController.TransferTeamAsync(dy.Model.Dto.TransferTeamDto)">
+            <summary>
+            团队转让
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>、
+        </member>
+        <member name="M:dy.Api.WeChat.TeamController.IsEnabledAsync(dy.Model.Dto.IsEnabledDto)">
+            <summary>
+            团队启用/禁用
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.WeChat.TeamMemberController">
+            <summary>
+             成员管理
+            </summary>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamMemberController.#ctor(dy.IServices.ITeamMemberServices,dy.Common.Redis.IRedisCacheManager,dy.Api.Log.ILoggerHelper)">
+            <summary>
+            成员管理
+            </summary>
+            <param name="memberServices"></param>
+            <param name="redisCacheManager"></param>
+            <param name="loggerHelper"></param>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamMemberController.PostTeamMemberAsync(dy.Model.Dto.AddTeamMemberDto)">
+            <summary>
+            添加成员
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamMemberController.GetTeamMemberListAsync(System.String,System.Int32,System.Int32)">
+            <summary>
+            成员列表
+            </summary>
+            <param name="teamId">团队Id</param>
+            <param name="pageIndex">页码</param>
+            <param name="pageSize">一页多少条</param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamMemberController.DelTeamMemberByIdAsync(System.String)">
+            <summary>
+            移除成员
+            </summary>
+            <param name="Id">成员Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamMemberController.UpdateTeamNickNameAsync(dy.Model.Dto.UpdateTeamNickNameDto)">
+            <summary>
+            修改我在团队显示的昵称
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamMemberController.GetTeamMemberRoleAsync(System.String)">
+            <summary>
+            当前成员角色
+            </summary>
+            <param name="teamId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamMemberController.GetMemberQuotaAsync(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            成员额度分页查询
+            </summary>
+            <param name="teamId">团队Id</param>
+            <param name="memberId">成员Id</param>
+            <param name="pageIndex">页码</param>
+            <param name="pageSize">一页多少条</param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.TeamMemberController.UpdateMemberQuotaAsync(dy.Model.Dto.UpdateMemberQuotaDto)">
+            <summary>
+            修改成员额度
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.WeChat.UserController">
+            <summary>
+            用户管理
+            </summary>
+        </member>
+        <member name="M:dy.Api.WeChat.UserController.#ctor(dy.IServices.IUserServices,dy.Api.Log.ILoggerHelper)">
+            <summary>
+            用户管理
+            </summary>
+            <param name="userService"></param>
+            <param name="loggerHelper"></param>
+        </member>
+        <member name="M:dy.Api.WeChat.UserController.PostWx_UserOpenIdAsync(dy.Model.Dto.AddUserLog)">
+            <summary>
+            添加登录日志
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.UserController.PostUserAsync(dy.Model.Dto.AddUserInfoDto)">
+            <summary>
+            添加用户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.UserController.GetUserInfoExists">
+            <summary>
+            查询用户是否存在
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

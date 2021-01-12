@@ -1,0 +1,5 @@
+E:\code\dy\dy.File\bin\Debug\netstandard2.0\dy.File.deps.json
+E:\code\dy\dy.File\bin\Debug\netstandard2.0\dy.File.dll
+E:\code\dy\dy.File\obj\Debug\netstandard2.0\dy.File.csprojAssemblyReference.cache
+E:\code\dy\dy.File\obj\Debug\netstandard2.0\dy.File.AssemblyInfoInputs.cache
+E:\code\dy\dy.File\obj\Debug\netstandard2.0\dy.File.AssemblyInfo.cs

@@ -1,0 +1,34 @@
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-17 17:33:26,206                                   
+【执行时间】[12685]毫秒                                   
+【错误位置】System.String 属性[(null)]                                   
+【错误描述】出现未知异常                                   
+【错误详情】
+System.Data.SqlClient.SqlException (0x80131904): 对象名 'tab_Wx_UserInfo' 无效。
+   at SqlSugar.AdoProvider.GetScalar(String sql, SugarParameter[] parameters)
+   at SqlSugar.AdoProvider.GetInt(String sql, SugarParameter[] parameters)
+   at SqlSugar.QueryableProvider`1.GetCount()
+   at SqlSugar.QueryableProvider`1.Count()
+   at SqlSugar.QueryableProvider`1.Any()
+   at dy.Repository.UserRepository.<>c__DisplayClass1_0.<GetUserInfoByOpenID>b__0() in E:\code\dy\dy\dy.Repository\UserRepository.cs:line 38
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at dy.Repository.UserRepository.GetUserInfoByOpenID(String openId) in E:\code\dy\dy\dy.Repository\UserRepository.cs:line 36
+   at dy.Services.UserServices.GetUserInfoByOpenID(String openId) in E:\code\dy\dy\dy.Services\UserServices.cs:line 84
+   at dy.Api.WeChat.UserController.GetUserInfoByOpenID(String openId) in E:\code\dy\dy\dy.Api\WeChat\UserController.cs:line 92
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+ClientConnectionId:6780da80-da1b-44b4-b587-b8d1d7c32d20
+Error Number:208,State:1,Class:16

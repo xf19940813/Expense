@@ -1,0 +1,65 @@
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-16 14:34:35,658                                   
+【执行时间】[5639]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-16 14:36:35,219                                   
+【执行时间】[16455]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-16 14:37:29,900                                   
+【执行时间】[5517]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-16 16:03:37,411                                   
+【执行时间】[50644]毫秒                                   
+【错误位置】System.String 属性[(null)]                                   
+【错误描述】出现未知异常                                   
+【错误详情】
+System.InvalidCastException: Object cannot be cast from DBNull to other types.
+   at System.DBNull.System.IConvertible.ToInt64(IFormatProvider provider)
+   at System.Convert.ToInt64(Object value)
+   at SqlSugar.InsertableProvider`1.ExecuteReturnBigIdentity()
+   at dy.Repository.AdvertisementRepository.<>c__DisplayClass0_0.<PostAdvertisementAsync>b__0() in E:\code\dy\dy\dy.Repository\AdvertisementRepository.cs:line 70
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at dy.Repository.AdvertisementRepository.PostAdvertisementAsync(Advertisement model) in E:\code\dy\dy\dy.Repository\AdvertisementRepository.cs:line 70
+   at dy.Services.AdvertisementServices.PostAdvertisementAsync(AdvertisementInput input) in E:\code\dy\dy\dy.Services\AdvertisementServices.cs:line 30
+   at dy.Api.Controllers.TestController.PostAdvertisementAsync(AdvertisementInput input) in E:\code\dy\dy\dy.Api\Controllers\TestController.cs:line 52
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-16 16:23:47,318                                   
+【执行时间】[18489]毫秒                                   
+【错误位置】dy.Api.WeChat.UserController 属性[(null)]                                   
+【错误描述】找不到OpenID                                   
+【错误详情】

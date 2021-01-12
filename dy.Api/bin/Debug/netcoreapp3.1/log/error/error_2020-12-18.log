@@ -1,0 +1,431 @@
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 15:58:28,500                                   
+【执行时间】[8162]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:00:13,805                                   
+【执行时间】[7106]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:02:48,141                                   
+【执行时间】[26171]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:14:50,808                                   
+【执行时间】[31419]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:15:48,623                                   
+【执行时间】[89233]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:02,532                                   
+【执行时间】[103142]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:27,230                                   
+【执行时间】[127841]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:27,975                                   
+【执行时间】[128585]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:28,340                                   
+【执行时间】[128950]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:28,531                                   
+【执行时间】[129141]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:28,714                                   
+【执行时间】[129325]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:28,886                                   
+【执行时间】[129497]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:29,071                                   
+【执行时间】[129681]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:29,233                                   
+【执行时间】[129843]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:29,422                                   
+【执行时间】[130032]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:29,607                                   
+【执行时间】[130217]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:34,418                                   
+【执行时间】[135028]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:34,952                                   
+【执行时间】[135562]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:35,420                                   
+【执行时间】[136031]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:35,896                                   
+【执行时间】[136506]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:38,561                                   
+【执行时间】[139171]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:39,048                                   
+【执行时间】[139658]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:39,501                                   
+【执行时间】[140112]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:41,833                                   
+【执行时间】[142443]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:42,343                                   
+【执行时间】[142954]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:42,763                                   
+【执行时间】[143373]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:42,962                                   
+【执行时间】[143572]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:43,143                                   
+【执行时间】[143754]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:43,315                                   
+【执行时间】[143925]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:43,520                                   
+【执行时间】[144131]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:53,366                                   
+【执行时间】[153976]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:53,916                                   
+【执行时间】[154526]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:54,327                                   
+【执行时间】[154937]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:54,512                                   
+【执行时间】[155122]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:54,704                                   
+【执行时间】[155314]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:54,891                                   
+【执行时间】[155501]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:55,081                                   
+【执行时间】[155692]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:16:55,266                                   
+【执行时间】[155876]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:17:12,630                                   
+【执行时间】[173240]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:17:13,148                                   
+【执行时间】[173758]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:17:13,368                                   
+【执行时间】[173978]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:17:13,535                                   
+【执行时间】[174146]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:17:13,712                                   
+【执行时间】[174322]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:17:17,006                                   
+【执行时间】[177616]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:17:17,467                                   
+【执行时间】[178077]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:17:20,631                                   
+【执行时间】[181241]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:17:21,065                                   
+【执行时间】[181675]毫秒                                   
+【错误位置】dy.Api.Controllers.TestController 属性[(null)]                                   
+【错误描述】这是错误日志                                   
+【错误详情】
+System.Exception: 123
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2020-12-18 16:37:04,054                                   
+【执行时间】[13843]毫秒                                   
+【错误位置】System.String 属性[(null)]                                   
+【错误描述】对象名 'Advertisement' 无效。                                   
+【错误详情】

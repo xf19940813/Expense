@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\dy.Common\dy.Common.csproj" />
+    <ProjectReference Include="..\dy.IRepository\dy.IRepository.csproj" />
+    <ProjectReference Include="..\dy.IServices\dy.IServices.csproj" />
+    <ProjectReference Include="..\dy.Repository\dy.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

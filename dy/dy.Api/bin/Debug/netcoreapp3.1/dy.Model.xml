@@ -1,0 +1,970 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dy.Model</name>
+    </assembly>
+    <members>
+        <member name="T:dy.Model.AppConsts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:dy.Model.AppConsts.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.AuditStatus.UnAudited">
+            <summary>
+            未审核
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.AuditStatus.Audited">
+            <summary>
+            已审核
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.AuditStatus.Finished">
+            <summary>
+            已完结
+            </summary>
+        </member>
+        <member name="T:dy.Model.AppConsts.ExpenseType">
+            <summary>
+            消费类型
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.ExpenseType.DailyWork">
+            <summary>
+            日常办公
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.ExpenseType.OfficeEquipment">
+            <summary>
+            办公设备
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.ExpenseType.FoodSubsidies">
+            <summary>
+            餐饮补助
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.ExpenseType.Other">
+            <summary>
+            其他
+            </summary>
+        </member>
+        <member name="T:dy.Model.AppConsts.RoleName">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.RoleName.Creator">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.RoleName.Admin">
+            <summary>
+            管理员
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.RoleName.Finance">
+            <summary>
+            财务
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.RoleName.Ordinary">
+            <summary>
+            普通员工
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.RoleName.BlackList">
+            <summary>
+            团队黑名单
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.AddExpenseInfoDto">
+            <summary>
+            添加消费信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddExpenseInfoDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddExpenseInfoDto.Amount">
+            <summary>
+            金额
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddExpenseInfoDto.ExpenseType">
+            <summary>
+            消费类型
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddExpenseInfoDto.ConsumeTime">
+            <summary>
+            消费时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddExpenseInfoDto.ConsumeProject">
+            <summary>
+            消费项目
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddExpenseInfoDto.Remarks">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.AddRoleDto">
+            <summary>
+            添加角色
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddRoleDto.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddRoleDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.UpdateRoleDto">
+            <summary>
+            更新成员角色
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.UpdateRoleDto.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.UpdateRoleDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.UpdateRoleDto.MemberId">
+            <summary>
+            成员Id
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.QueryRoleDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryRoleDto.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryRoleDto.RoleName">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.AddTeamDto">
+            <summary>
+            添加团队
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddTeamDto.TeamName">
+            <summary>
+            团队名称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddTeamDto.TeamInfo">
+            <summary>
+            团队信息
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.UpdateTeamDto">
+            <summary>
+            更新团队信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.UpdateTeamDto.ID">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.QueryTeamDto">
+            <summary>
+            查询团队信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryTeamDto.ID">
+            <summary>
+            团队ID
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryTeamDto.TeamName">
+            <summary>
+            团队名称
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.GetTeamDto">
+            <summary>
+            获取团队信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.GetTeamDto.TeamInfo">
+             <summary>
+            团队信息
+             </summary>
+        </member>
+        <member name="T:dy.Model.Dto.TransferTeamDto">
+            <summary>
+            团队转让
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.TransferTeamDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.TransferTeamDto.MemberId">
+            <summary>
+            成员Id
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.IsEnabledDto">
+            <summary>
+            团队启用/禁用
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.IsEnabledDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.IsEnabledDto.Value">
+            <summary>
+            switch的值 true 和 false
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.QueryTeamMemberDto">
+            <summary>
+            成员列表信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryTeamMemberDto.ID">
+            <summary>
+            成员ID
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryTeamMemberDto.TeamNickName">
+            <summary>
+            当前团队里面显示的昵称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryTeamMemberDto.Headimgurl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryTeamMemberDto.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryTeamMemberDto.RoleName">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.AddTeamMemberDto">
+            <summary>
+            添加成员信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddTeamMemberDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.UpdateTeamNickNameDto">
+            <summary>
+            更新我在团队显示的昵称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.UpdateTeamNickNameDto.MemberId">
+            <summary>
+            成员Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.UpdateTeamNickNameDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.UpdateTeamNickNameDto.TeamNickName">
+            <summary>
+            当前团队里面显示的昵称
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.QueryMemberQuotaDto">
+            <summary>
+            成员额度
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryMemberQuotaDto.MemberId">
+            <summary>
+            成员Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryMemberQuotaDto.TeamNickName">
+            <summary>
+            当前团队里面显示的昵称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryMemberQuotaDto.Headimgurl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryMemberQuotaDto.FreeQuota">
+            <summary>
+            免审额度
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.UpdateMemberQuotaDto">
+            <summary>
+            修改成员额度
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.UpdateMemberQuotaDto.MemberId">
+            <summary>
+            成员Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.UpdateMemberQuotaDto.FreeQuota">
+            <summary>
+            免审额度
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.AddUserInfoDto">
+            <summary>
+            添加用户信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddUserInfoDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddUserInfoDto.Gender">
+            <summary>
+            性别，1代表男，2代表女
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddUserInfoDto.Country">
+            <summary>
+            国家
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddUserInfoDto.Province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddUserInfoDto.City">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddUserInfoDto.Headimgurl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddUserInfoDto.IV">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddUserInfoDto.EncryptedData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.QueryUserInfoDto">
+            <summary>
+            查询用户信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryUserInfoDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryUserInfoDto.Headimgurl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryUserInfoDto.MobilePhone">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.AddUserLog">
+            <summary>
+            添加登录日志
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddUserLog.code">
+            <summary>
+            临时登录凭证 code
+            </summary>
+        </member>
+        <member name="T:dy.Model.Enum.Gender">
+            <summary>
+            性别枚举
+            </summary>
+        </member>
+        <member name="F:dy.Model.Enum.Gender.Man">
+            <summary>
+            1代表男
+            </summary>
+        </member>
+        <member name="F:dy.Model.Enum.Gender.Woman">
+            <summary>
+            2代表女
+            </summary>
+        </member>
+        <member name="P:dy.Model.ErrorModel.code">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:dy.Model.ErrorModel.msg">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.ErrorModel.detail">
+            <summary>
+            错误详情
+            </summary>
+        </member>
+        <member name="P:dy.Model.ErrorModel.timestamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="T:dy.Model.Expense.ExpenseInfo">
+            <summary>
+            报销信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.ID">
+            <summary>
+            主键ID，如果是主键，此处必须指定，否则会引发InSingle(id)方法异常。
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.OpenId">
+            <summary>
+            用户唯一标识
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.Amount">
+            <summary>
+            金额
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.ExpenseType">
+            <summary>
+            消费类型
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.ConsumeTime">
+            <summary>
+            消费时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.ConsumeProject">
+            <summary>
+            消费项目
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.Remarks">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="T:dy.Model.Expense.Team">
+            <summary>
+            团队实体
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Team.ID">
+            <summary>
+             主键ID
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Team.TeamName">
+            <summary>
+            团队名称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Team.TeamInfo">
+            <summary>
+            团队信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Team.CreatorId">
+            <summary>
+            创建人Id-OpenId
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Team.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Team.LastModifyOpenId">
+            <summary>
+            修改人
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Team.LastModifyTime">
+            <summary>
+            修改时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Team.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Team.IsEnabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="T:dy.Model.Expense.TeamMember">
+            <summary>
+            团队成员实体
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.ID">
+            <summary>
+             主键ID
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.TeamNickName">
+            <summary>
+            当前团队里面显示的昵称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.Headimgurl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.MobilePhone">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.OpenId">
+            <summary>
+            用户唯一标识
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.LastModifyTime">
+            <summary>
+            修改时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.FreeQuota">
+            <summary>
+            免审额度
+            </summary>
+        </member>
+        <member name="P:dy.Model.PageResult`1.data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:dy.Model.PageResult`1.pageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:dy.Model.PageResult`1.pageSize">
+            <summary>
+            一也多少条
+            </summary>
+        </member>
+        <member name="P:dy.Model.PageResult`1.totalCount">
+            <summary>
+            总共多少条
+            </summary>
+        </member>
+        <member name="T:dy.Model.Setting.Role">
+            <summary>
+            角色实体
+            </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.ID">
+            <summary>
+             角色ID
+             </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.IsEnabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.CreatorOpenId">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.LastModifyTime">
+            <summary>
+            最后修改时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.LastModifyOpenId">
+            <summary>
+            最后修改人
+            </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.Description">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:dy.Model.Setting.Role.TimeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="T:dy.Model.Test.Advertisement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:dy.Model.Test.Advertisement.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:dy.Model.Test.Advertisement.ImgUrl">
+            <summary>
+            广告图片
+            </summary>
+        </member>
+        <member name="P:dy.Model.Test.Advertisement.Title">
+            <summary>
+            广告标题
+            </summary>
+        </member>
+        <member name="P:dy.Model.Test.Advertisement.Url">
+            <summary>
+            广告链接
+            </summary>
+        </member>
+        <member name="P:dy.Model.Test.Advertisement.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:dy.Model.Test.Advertisement.Createdate">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Test.AdvertisementInput.Title">
+            <summary>
+            广告标题
+            </summary>
+        </member>
+        <member name="P:dy.Model.Test.AdvertisementInput.Url">
+            <summary>
+            广告链接
+            </summary>
+        </member>
+        <member name="P:dy.Model.Test.AdvertisementInput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:dy.Model.Test.AdvertisementInput.Createdate">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:dy.Model.TokenInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:dy.Model.TokenInfo.OpenId">
+            <summary>
+            用户唯一标识
+            </summary>
+        </member>
+        <member name="P:dy.Model.TokenInfo.SessionKey">
+            <summary>
+            密钥
+            </summary>
+        </member>
+        <member name="T:dy.Model.TokenModel">
+            <summary>
+            令牌
+            </summary>
+        </member>
+        <member name="P:dy.Model.TokenModel.OpenId">
+            <summary>
+            用户唯一标识
+            </summary>
+        </member>
+        <member name="T:dy.Model.User.Wx_UserInfo">
+            <summary>
+            微信用户信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.ID">
+            <summary>
+            主键ID，如果是主键，此处必须指定，否则会引发InSingle(id)方法异常。
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.OpenId">
+            <summary>
+            用户唯一标识
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.FollowDate">
+            <summary>
+            激活时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.Gender">
+            <summary>
+            性别，1代表男，2代表女
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.Country">
+            <summary>
+            国家
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.Province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.City">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.Headimgurl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.MobilePhone">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserInfo.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:dy.Model.User.Wx_UserOpenId">
+            <summary>
+            用户OpenId以及登录时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserOpenId.ID">
+            <summary>
+             主键ID，如果是主键，此处必须指定，否则会引发InSingle(id)方法异常。
+             </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserOpenId.OpenId">
+            <summary>
+            用户唯一标识
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserOpenId.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.User.Wx_UserOpenId.LoginTime">
+            <summary>
+            登录时间
+            </summary>
+        </member>
+        <member name="T:dy.Model.UtilConvert">
+            <summary>
+            解决空转换异常的bug
+            </summary>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToInt(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToInt(System.Object,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToMoney(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToMoney(System.Object,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToString(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToString(System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToDecimal(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToDecimal(System.Object,System.Decimal)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToDate(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToDate(System.Object,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Model.UtilConvert.ObjToBool(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
