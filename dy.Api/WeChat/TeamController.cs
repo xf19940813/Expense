@@ -76,6 +76,7 @@ namespace dy.Api.WeChat
             string openId = string.Empty;
             if (isKey)
             {
+                //根据Token中的信息获取到OpenId
                 openId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
             }
 

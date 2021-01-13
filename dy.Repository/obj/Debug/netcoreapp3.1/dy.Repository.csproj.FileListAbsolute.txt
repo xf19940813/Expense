@@ -30,4 +30,3 @@ E:\code\dy\dy.Repository\obj\Debug\netcoreapp3.1\dy.Repository.csproj.CoreCompil
 E:\code\dy\dy.Repository\obj\Debug\netcoreapp3.1\dy.Repository.csproj.CopyComplete
 E:\code\dy\dy.Repository\obj\Debug\netcoreapp3.1\dy.Repository.dll
 E:\code\dy\dy.Repository\obj\Debug\netcoreapp3.1\dy.Repository.pdb
-E:\code\dy\dy.Repository\bin\Debug\netcoreapp3.1\dy.Repository.xml

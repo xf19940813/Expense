@@ -137,6 +137,7 @@ namespace dy.Repository
         /// </summary>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">一页多少条</param>
+        /// <param name="openId">用户唯一标识</param>
         /// <returns></returns>
         public async Task<PageResult<QueryTeamDto>> GetTeamListAsync(int pageIndex, int pageSize, string openId)
         {
@@ -160,7 +161,7 @@ namespace dy.Repository
                 pageResult.data = data;
                 pageResult.pageIndex = pageIndex;
                 pageResult.pageSize = pageSize;
-                pageResult.totalCount = entityDB.AsQueryable().Count();
+                pageResult.totalCount = entityDB.AsQueryable().Where(a => a.IsDeleted == false).Count();
 
                 return pageResult;
             });

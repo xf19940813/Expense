@@ -40,4 +40,3 @@ E:\code\dy\dy.Services\obj\Debug\netcoreapp3.1\dy.Services.csproj.CoreCompileInp
 E:\code\dy\dy.Services\obj\Debug\netcoreapp3.1\dy.Services.csproj.CopyComplete
 E:\code\dy\dy.Services\obj\Debug\netcoreapp3.1\dy.Services.dll
 E:\code\dy\dy.Services\obj\Debug\netcoreapp3.1\dy.Services.pdb
-E:\code\dy\dy.Services\bin\Debug\netcoreapp3.1\dy.Repository.xml

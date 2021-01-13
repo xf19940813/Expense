@@ -254,4 +254,3 @@ E:\code\dy\dy.Api\obj\Debug\netcoreapp3.1\staticwebassets\dy.Api.StaticWebAssets
 E:\code\dy\dy.Api\obj\Debug\netcoreapp3.1\dy.Api.dll
 E:\code\dy\dy.Api\obj\Debug\netcoreapp3.1\dy.Api.pdb
 E:\code\dy\dy.Api\obj\Debug\netcoreapp3.1\dy.Api.genruntimeconfig.cache
-E:\code\dy\dy.Api\bin\Debug\netcoreapp3.1\dy.Repository.xml
