@@ -23,7 +23,7 @@ namespace dy.IRepository
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">一页多少条</param>
         /// <returns></returns>
-        Task<PageResult<QueryTeamDto>> GetTeamListAsync(int pageIndex, int pageSize);
+        Task<PageResult<QueryTeamDto>> GetTeamListAsync(int pageIndex, int pageSize, string openId);
 
         /// <summary>
         /// 更新团队信息

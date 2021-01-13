@@ -7,6 +7,7 @@ using dy.Model.Dto;
 using dy.Model.Expense;
 using dy.Model.Setting;
 using dy.Model.User;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,11 +15,19 @@ using System.Threading.Tasks;
 
 namespace dy.Repository
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TeamRepository : BaseRepository<Team>, ITeamRepository
     {
         private readonly IMapper iMapper;
         private readonly IRedisCacheManager _redisCacheManager;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="IMapper"></param>
+        /// <param name="redisCacheManager"></param>
         public TeamRepository(IMapper IMapper, IRedisCacheManager redisCacheManager)
         {
             iMapper = IMapper;
@@ -129,18 +138,23 @@ namespace dy.Repository
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">一页多少条</param>
         /// <returns></returns>
-        public async Task<PageResult<QueryTeamDto>> GetTeamListAsync(int pageIndex, int pageSize)
+        public async Task<PageResult<QueryTeamDto>> GetTeamListAsync(int pageIndex, int pageSize, string openId)
         {
             return await Task.Run(() =>
             {
                 PageResult<QueryTeamDto> pageResult = new PageResult<QueryTeamDto>();
 
-                var data = entityDB.AsQueryable().Where(a=> a.IsDeleted == false).Select(a => new QueryTeamDto
+                var data = db.Queryable<Team, TeamMember>((a, b) => new JoinQueryInfos(
+                     JoinType.Inner, a.ID == b.TeamId
+                ))
+                .Where((a, b)=> a.IsDeleted == false)
+                .Where((a, b) => b.OpenId == openId)
+                .Select(a => new QueryTeamDto
                 { 
                     ID = a.ID,
                     TeamName = a.TeamName
                 })
-                .OrderBy("CreateTime desc")
+                .OrderBy("a.CreateTime desc")
                 .ToPageList(pageIndex, pageSize);
 
                 pageResult.data = data;

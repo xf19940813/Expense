@@ -70,9 +70,18 @@ namespace dy.Api.WeChat
         [HttpGet("GetTeamListAsync")]
         public async Task<IActionResult> GetTeamListAsync(int pageIndex, int pageSize)
         {
+            //从Header中获取Token
+            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            bool isKey = _redisCacheManager.Get(tokenHeader);
+            string openId = string.Empty;
+            if (isKey)
+            {
+                openId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
+            }
+
             try
             {
-                var data = await _teamServices.GetTeamListAsync(pageIndex, pageSize);
+                var data = await _teamServices.GetTeamListAsync(pageIndex, pageSize, openId);
                 return Ok(data);
 
             }

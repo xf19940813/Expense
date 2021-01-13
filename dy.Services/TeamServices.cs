@@ -36,9 +36,9 @@ namespace dy.Services
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">一页多少条</param>
         /// <returns></returns>
-        public async Task<PageResult<QueryTeamDto>> GetTeamListAsync(int pageIndex, int pageSize)
+        public async Task<PageResult<QueryTeamDto>> GetTeamListAsync(int pageIndex, int pageSize, string openId)
         {
-            return await _teameDal.GetTeamListAsync(pageIndex, pageSize);
+            return await _teameDal.GetTeamListAsync(pageIndex, pageSize, openId);
         }
 
         /// <summary>
