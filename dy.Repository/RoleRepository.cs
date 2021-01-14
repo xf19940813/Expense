@@ -5,6 +5,7 @@ using dy.Model;
 using dy.Model.Dto;
 using dy.Model.Expense;
 using dy.Model.Setting;
+using dy.Model.User;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -32,9 +33,11 @@ namespace dy.Repository
         {
             if (dto.TeamId == null) throw new Exception("团队Id为空！");
 
+            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到UserId
+
             Role role = iMapper.Map<Role>(dto);
             role.ID = IdHelper.CreateGuid();
-            role.CreatorOpenId = openId;
+            role.CreatorUserId = UserId;
             role.IsDeleted = false;
             role.IsEnabled = true;
 

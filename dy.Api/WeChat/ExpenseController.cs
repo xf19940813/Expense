@@ -41,11 +41,10 @@ namespace dy.Api.WeChat
         [HttpPost("PostExpenseInfoAsync")]
         public async Task<IActionResult> PostExpenseInfoAsync([FromBody]AddExpenseInfoDto input)
         {
-            //从Header中获取Token
-            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            string openId = GetOpenId();
             try
             {
-                var data = await _expenseServices.PostExpenseInfoAsync(input, tokenHeader);
+                var data = await _expenseServices.PostExpenseInfoAsync(input, openId);
                 return AddSuccessMsg();
             }
             catch(Exception err)
@@ -65,7 +64,7 @@ namespace dy.Api.WeChat
         /// <returns></returns>
         [Authorize]
         [HttpGet("GetExpenseInfoAsync")]
-        public async Task<IActionResult> GetExpenseInfoAsync(string teamId,short? Status, int pageIndex, int pageSize)
+        public async Task<IActionResult> GetExpenseInfoAsync(string teamId, short? Status, int pageIndex, int pageSize)
         {
             try
             {

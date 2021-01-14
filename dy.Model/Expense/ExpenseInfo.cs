@@ -24,11 +24,6 @@ namespace dy.Model.Expense
         public string TeamId { get; set; }
 
         /// <summary>
-        /// 用户唯一标识
-        /// </summary>
-        public string OpenId { get; set; }
-
-        /// <summary>
         /// 金额
         /// </summary>
         public decimal Amount { get; set; }
@@ -59,9 +54,24 @@ namespace dy.Model.Expense
         public string Remarks { get; set; }
 
         /// <summary>
+        /// 创建人
+        /// </summary>
+        public string CreateUserId { get; set; }
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; } = DateTime.Now;
+
+        /// <summary>
+        /// 审核人
+        /// </summary>
+        public string AuditUserId { get; set; }
+
+        /// <summary>
+        /// 审核时间
+        /// </summary>
+        public DateTime? AuditTime { get; set; }
 
         /// <summary>
         /// 是否删除

@@ -37,9 +37,9 @@ namespace dy.Services
         /// <param name="input"></param>
         /// <param name="tokenHeader"></param>
         /// <returns></returns>
-        public async Task<bool> PostUserAsync(AddUserInfoDto input, string tokenHeader)
+        public async Task<bool> PostUserAsync(AddUserInfoDto input, string openId, string sessionKey)
         {
-            return await _userDal.PostUserAsync(input, tokenHeader);
+            return await _userDal.PostUserAsync(input, openId, sessionKey);
         }
 
         /// <summary>

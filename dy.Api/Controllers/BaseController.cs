@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dy.Common.Helper;
+using dy.Common.Redis;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,8 @@ namespace dy.Api.Controllers
     [ApiController]
     public class BaseController : ControllerBase
     {
+        IRedisCacheManager _redisCacheManager = new RedisCacheManager();
+
         protected virtual T CreateService<T>()
         {
             return (T)this.HttpContext.RequestServices.GetService(typeof(T));
@@ -121,6 +124,48 @@ namespace dy.Api.Controllers
             if (string.IsNullOrEmpty(value))
                 value = string.Empty;
             return value;
+        }
+
+        /// <summary>
+        /// 根据Token获取OpenID
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]
+        public string GetOpenId()
+        {
+            //从Header中获取Token
+            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            bool isKey = _redisCacheManager.Get(tokenHeader);
+            string openId = string.Empty;
+            if (isKey)
+            {
+                //根据Token中的信息获取到OpenId
+                openId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
+            }
+
+            return openId;
+        }
+
+        /// <summary>
+        /// 获取token中的OpenId和Session_key
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]
+        public TokenInfo GetTokenInfo()
+        {
+            var tokenInfo = new TokenInfo();
+            //从Header中获取Token
+            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            bool isKey = _redisCacheManager.Get(tokenHeader);
+            tokenInfo.OpenId = string.Empty;
+            tokenInfo.SessionKey = string.Empty;
+            if(isKey)
+            {
+                tokenInfo.OpenId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
+                tokenInfo.SessionKey = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[1].Trim('"');
+            }
+
+            return tokenInfo;
         }
     }
 }

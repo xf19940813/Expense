@@ -38,11 +38,6 @@ namespace dy.Model.Expense
         public string MobilePhone { get; set; }
 
         /// <summary>
-        /// 用户唯一标识
-        /// </summary>
-        public string OpenId { get; set; }
-
-        /// <summary>
         /// 团队Id
         /// </summary>
         public string TeamId { get; set; }
@@ -53,9 +48,19 @@ namespace dy.Model.Expense
         public string RoleId { get; set; }
 
         /// <summary>
+        /// 创建人
+        /// </summary>
+        public string CreateUserId { get; set; }
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; } = DateTime.Now;
+
+        /// <summary>
+        /// 修改人
+        /// </summary>
+        public string LastModifyUserId { get; set; }
 
         /// <summary>
         /// 修改时间

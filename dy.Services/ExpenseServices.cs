@@ -28,9 +28,9 @@ namespace dy.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> PostExpenseInfoAsync(AddExpenseInfoDto input, string tokenHeader)
+        public async Task<bool> PostExpenseInfoAsync(AddExpenseInfoDto input, string openId)
         {
-            return await _expenseDal.PostExpenseInfoAsync(input, tokenHeader);
+            return await _expenseDal.PostExpenseInfoAsync(input, openId);
         }
 
         /// <summary>

@@ -25,9 +25,9 @@ namespace dy.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> PostTeamAsync(AddTeamDto input, string tokenHeader)
+        public async Task<bool> PostTeamAsync(AddTeamDto input, string openId)
         {
-            return await _teameDal.PostTeamAsync(input, tokenHeader);
+            return await _teameDal.PostTeamAsync(input, openId);
         }
 
         /// <summary>

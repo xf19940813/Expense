@@ -108,4 +108,20 @@ namespace dy.Model.Dto
         /// </summary>
         public decimal FreeQuota { get; set; }
     }
+
+    /// <summary>
+    /// 获取成员昵称
+    /// </summary>
+    public class GetTeamNickNameDto
+    {
+        /// <summary>
+        /// 成员Id
+        /// </summary>
+        public string MemberId { get; set; }
+
+        /// <summary>
+        /// 在团队里的昵称
+        /// </summary>
+        public string TeamNickName { get; set; }
+    }
 }

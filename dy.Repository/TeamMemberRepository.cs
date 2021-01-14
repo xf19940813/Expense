@@ -31,23 +31,16 @@ namespace dy.Repository
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string tokenHeader)
-        {
-            string OpenId = string.Empty;
-            string SessionKey = string.Empty;
+        public async Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string openId, string sessionKey)
+        {;
             string MobilePhone = string.Empty;
-            bool isKey = _redisCacheManager.Get(tokenHeader);
-            if (isKey)
+            if (dto.IV != "" && dto.EncryptedData != "")
             {
-                OpenId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
-                if (dto.IV != "" && dto.EncryptedData != "")
-                {
-                    SessionKey = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[1].Trim('"');
-                    MobilePhone = WxHelper.getPhoneNumber(dto.EncryptedData, dto.IV, SessionKey);                    
-                }
+                MobilePhone = WxHelper.getPhoneNumber(dto.EncryptedData, dto.IV, sessionKey);
             }
-            
-            var isAny = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == OpenId).Any();
+
+            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到UserId
+            var isAny = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).Any();
 
             var result = 0;
             return await Task.Run(() =>
@@ -60,21 +53,20 @@ namespace dy.Repository
                     {
                         Wx_UserInfo userInfo = iMapper.Map<Wx_UserInfo>(dto);
                         userInfo.ID = IdHelper.CreateGuid();
-                        userInfo.OpenId = OpenId;
+                        userInfo.OpenId = openId;
                         userInfo.MobilePhone = MobilePhone;
                         db.Insertable(userInfo).ExecuteCommand();
                     }
 
-                    string CreatorId = db.Queryable<Team>().Where(t => t.ID == dto.TeamId && t.IsDeleted == false).First()?.CreatorId;
+                    string CreatorId = db.Queryable<Team>().Where(t => t.ID == dto.TeamId && t.IsDeleted == false).First()?.CreateUserId;
 
                     var roleId = db.Queryable<Role>().Where(a => a.TeamId == dto.TeamId && a.Name == AppConsts.RoleName.Ordinary).First()?.ID;
 
-                    var isMember = db.Queryable<TeamMember>().Where(a => a.TeamId == dto.TeamId && a.IsDeleted == false && a.OpenId == OpenId).Any();
+                    var isMember = db.Queryable<TeamMember>().Where(a => a.TeamId == dto.TeamId && a.IsDeleted == false && a.CreateUserId == UserId).Any();
 
                     if(isMember)
                     {
-                       throw new Exception("成员已经加了团队，不能再次加入！");
-                       
+                       throw new Exception("成员已经加了团队，不能再次加入！");   
                     }
                     else
                     {
@@ -82,7 +74,7 @@ namespace dy.Repository
                         teamMember.ID = IdHelper.CreateGuid();
                         teamMember.TeamNickName = dto.NickName;
                         teamMember.IsDeleted = false;
-                        teamMember.OpenId = OpenId;
+                        teamMember.CreateUserId = UserId;
                         teamMember.RoleId = roleId;
                         var result = db.Insertable(teamMember).ExecuteCommand();
                     }
@@ -95,10 +87,10 @@ namespace dy.Repository
                     if (isAny == true)
                     {
                         db.Updateable<Wx_UserInfo>().SetColumns(a => new Wx_UserInfo() { MobilePhone = MobilePhone, FollowDate = DateTime.Now })
-                                .Where(a => a.OpenId == OpenId).ExecuteCommand();
+                                .Where(a => a.OpenId == openId).ExecuteCommand();
                     }
                     result = db.Updateable<TeamMember>().SetColumns(a => new TeamMember() { MobilePhone = MobilePhone })
-                                .Where(a => a.OpenId == OpenId && a.TeamId == dto.TeamId).ExecuteCommand();
+                                .Where(a => a.CreateUserId == UserId && a.TeamId == dto.TeamId).ExecuteCommand();
 
                     db.CommitTran();
                 }
@@ -183,9 +175,11 @@ namespace dy.Repository
         /// <returns></returns>
         public async Task<string> GetTeamMemberRoleAsync(string teamId, string openId)
         {
+            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到UserId
+
             return await Task.Run(() =>
             {
-                var roleId = db.Queryable<TeamMember>().Where(a => a.TeamId == teamId && a.OpenId == openId).First()?.RoleId;
+                var roleId = db.Queryable<TeamMember>().Where(a => a.TeamId == teamId && a.CreateUserId == UserId).First()?.RoleId;
                 var roleName = db.Queryable<Role>().Where(a => a.ID == roleId).First()?.Name;
 
                 return roleName;
@@ -245,6 +239,28 @@ namespace dy.Repository
                 var i = db.Updateable<TeamMember>(a => a.FreeQuota == dto.FreeQuota).Where(a => a.ID == dto.MemberId).ExecuteCommand();
 
                 return i > 0;
+            });
+        }
+
+        /// <summary>
+        /// 获取当前成员在团队的昵称
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <param name="openId"></param>
+        /// <returns></returns>
+        public async Task<GetTeamNickNameDto> GetTeamNickNameAsync(string teamId, string openId)
+        {
+            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到UserId
+
+            return await Task.Run(() =>
+            {
+                var query = db.Queryable<TeamMember>().Where(a => a.TeamId == teamId && a.CreateUserId == UserId)
+                .Select(a => new GetTeamNickNameDto
+                { 
+                    MemberId = a.ID,
+                    TeamNickName = a.TeamNickName
+                });
+                return query.First();
             });
         }
     }

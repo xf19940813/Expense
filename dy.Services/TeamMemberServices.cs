@@ -25,9 +25,9 @@ namespace dy.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string tokenHeader)
+        public async Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string openId, string sessionKey)
         {
-            return await _memberRepository.PostTeamMemberAsync(dto, tokenHeader);
+            return await _memberRepository.PostTeamMemberAsync(dto, openId, sessionKey);
         }
 
 
@@ -95,6 +95,17 @@ namespace dy.Services
         public async Task<bool> UpdateMemberQuotaAsync(UpdateMemberQuotaDto dto)
         {
             return await _memberRepository.UpdateMemberQuotaAsync(dto);
+        }
+
+        /// <summary>
+        /// 获取当前成员在团队的昵称
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <param name="openId"></param>
+        /// <returns></returns>
+        public async Task<GetTeamNickNameDto> GetTeamNickNameAsync(string teamId, string openId)
+        {
+            return await _memberRepository.GetTeamNickNameAsync(teamId, openId);
         }
     }
 }

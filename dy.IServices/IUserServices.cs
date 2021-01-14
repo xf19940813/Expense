@@ -14,7 +14,7 @@ namespace dy.IServices
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<bool> PostUserAsync(AddUserInfoDto input, string tokenHeader);
+        Task<bool> PostUserAsync(AddUserInfoDto input, string openId, string sessionKey);
 
         /// <summary>
         /// 查询用户是否存在

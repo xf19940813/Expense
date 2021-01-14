@@ -44,11 +44,12 @@ namespace dy.Api.WeChat
         [HttpPost("PostTeamMemberAsync")]
         public async Task<IActionResult> PostTeamMemberAsync([FromBody]AddTeamMemberDto dto)
         {
-            //从Header中获取Token
-            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            var tokenInfo = GetTokenInfo();
+            var openId = tokenInfo.OpenId;
+            var sessionKey = tokenInfo.SessionKey;
             try
             {
-                var data = await _memberServices.PostTeamMemberAsync(dto, tokenHeader);
+                var data = await _memberServices.PostTeamMemberAsync(dto, openId, sessionKey);
                 return AddSuccessMsg();
             }
             catch (Exception err)
@@ -133,15 +134,7 @@ namespace dy.Api.WeChat
         [HttpGet("GetTeamMemberRoleAsync")]
         public async Task<IActionResult> GetTeamMemberRoleAsync(string teamId)
         {
-            //从Header中获取Token
-            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-            bool isKey = _redisCacheManager.Get(tokenHeader);
-            string openId = string.Empty;
-            if (isKey)
-            {
-                openId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
-            }
-
+            string openId = GetOpenId();
             try
             {
                 var data = await _memberServices.GetTeamMemberRoleAsync(teamId, openId);
@@ -196,6 +189,28 @@ namespace dy.Api.WeChat
             {
                 _logger.Error(typeof(TeamMemberController), "更新失败!", new Exception(err.Message));
                 return FailedMsg("更新失败! " + err.Message);
+            }
+        }
+
+        /// <summary>
+        /// 获取当前成员在团队的昵称
+        /// </summary>
+        /// <param name="teamId">团队Id</param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("GetTeamNickNameAsync")]
+        public async Task<IActionResult> GetTeamNickNameAsync(string teamId)
+        {
+            string openId = GetOpenId();
+            try
+            {
+                var data = await _memberServices.GetTeamNickNameAsync(teamId, openId);
+                return SuccessData(data);
+            }
+            catch(Exception err)
+            {
+                _logger.Error(typeof(TeamMemberController), "获取昵称失败!", new Exception(err.Message));
+                return FailedMsg("获取昵称失败! " + err.Message);
             }
         }
     }

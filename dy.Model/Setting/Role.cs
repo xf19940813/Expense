@@ -28,6 +28,11 @@ namespace dy.Model.Setting
         public bool IsEnabled { get; set; }
 
         /// <summary>
+        /// 创建人
+        /// </summary>
+        public string CreatorUserId { get; set; }
+
+        /// <summary>
         /// 是否删除
         /// </summary>
         public bool IsDeleted { get; set; }
@@ -38,19 +43,14 @@ namespace dy.Model.Setting
         public DateTime CreateTime { get; set; } = DateTime.Now;
 
         /// <summary>
-        /// 创建人
+        /// 修改人
         /// </summary>
-        public string CreatorOpenId { get; set; }
+        public string LastModifyUserId { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// 修改时间
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
-
-        /// <summary>
-        /// 最后修改人
-        /// </summary>
-        public string LastModifyOpenId { get; set; }
 
         /// <summary>
         /// 团队Id

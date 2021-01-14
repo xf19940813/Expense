@@ -76,22 +76,5 @@ namespace dy.Api.Controllers
             }
            
         }
-
-        /// <summary>
-        /// 解析Token
-        /// </summary>
-        /// <returns></returns>
-        [ApiExplorerSettings(IgnoreApi = true)]
-        [HttpGet("ParseToken")]
-        [Authorize]
-        public TokenInfo ParseToken()
-        {
-            //需要截取Bearer 
-            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-            var user = JwtHelper.SerializeJwt(tokenHeader);
-            return user;
-
-        }
-
     }
 }

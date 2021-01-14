@@ -39,19 +39,12 @@ namespace dy.Repository
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> PostTeamAsync(AddTeamDto input, string tokenHeader)
+        public async Task<bool> PostTeamAsync(AddTeamDto input, string openId)
         {
-            string OpenId = string.Empty;
-            bool isKey = _redisCacheManager.Get(tokenHeader);
-
-            if (isKey)
-            {
-                OpenId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
-            }
-
-            var query = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == OpenId)
+            var query = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId)
                 .Select(a => new QueryUserInfoDto 
                 { 
+                    UserId = a.ID,
                     NickName = a.NickName,
                     Headimgurl = a.Headimgurl,
                     MobilePhone = a.MobilePhone
@@ -70,7 +63,7 @@ namespace dy.Repository
                 {
                     //添加团队
                     team.ID = IdHelper.CreateGuid();
-                    team.CreatorId = OpenId;
+                    team.CreateUserId = query.UserId;
                     team.IsDeleted = false;
                     team.IsEnabled = true;
                     db.Insertable(team).ExecuteCommand();
@@ -78,7 +71,7 @@ namespace dy.Repository
                     //添加角色
                     role.ID = IdHelper.CreateGuid();
                     role.Name = AppConsts.RoleName.Creator;
-                    role.CreatorOpenId = OpenId;
+                    role.CreatorUserId = query.UserId;
                     role.TeamId = team.ID;
                     role.IsDeleted = false;
                     role.IsEnabled = true;
@@ -90,9 +83,9 @@ namespace dy.Repository
                     teamMember.TeamNickName = query.NickName;
                     teamMember.Headimgurl = query.Headimgurl;
                     teamMember.MobilePhone = query.MobilePhone;
-                    teamMember.OpenId = OpenId;
                     teamMember.TeamId = team.ID;
                     teamMember.RoleId = role.ID;
+                    teamMember.CreateUserId = query.UserId;
                     teamMember.IsDeleted = false;
                     db.Insertable(teamMember).ExecuteCommand();
 
@@ -101,7 +94,7 @@ namespace dy.Repository
                         {
                              ID = IdHelper.CreateGuid(),
                              Name = AppConsts.RoleName.Admin,  //管理员
-                             CreatorOpenId = OpenId,
+                             CreatorUserId = query.UserId,
                              TeamId = team.ID,
                              IsDeleted = false,
                              IsEnabled = true
@@ -109,7 +102,7 @@ namespace dy.Repository
                         new Role(){
                              ID = IdHelper.CreateGuid(),
                              Name = AppConsts.RoleName.Finance, //财务
-                             CreatorOpenId = OpenId,
+                             CreatorUserId = query.UserId,
                              TeamId = team.ID,
                              IsDeleted = false,
                              IsEnabled = true
@@ -117,7 +110,7 @@ namespace dy.Repository
                         new Role(){
                              ID = IdHelper.CreateGuid(),
                              Name = AppConsts.RoleName.Ordinary, //普通员工
-                             CreatorOpenId = OpenId,
+                             CreatorUserId = query.UserId,
                              TeamId = team.ID,
                              IsDeleted = false,
                              IsEnabled = true
@@ -143,13 +136,15 @@ namespace dy.Repository
         {
             return await Task.Run(() =>
             {
+                var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID;
+
                 PageResult<QueryTeamDto> pageResult = new PageResult<QueryTeamDto>();
 
                 var data = db.Queryable<Team, TeamMember>((a, b) => new JoinQueryInfos(
                      JoinType.Inner, a.ID == b.TeamId
                 ))
                 .Where((a, b)=> a.IsDeleted == false)
-                .Where((a, b) => b.OpenId == openId)
+                .Where((a, b) => b.CreateUserId == UserId)
                 .Select(a => new QueryTeamDto
                 { 
                     ID = a.ID,
@@ -178,10 +173,12 @@ namespace dy.Repository
         {
             return await Task.Run(() =>
             {
+                var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID;
+
                 var result = db.Updateable<Team>().SetColumns(a => new Team() {
                     TeamName = dto.TeamName,
                     TeamInfo = dto.TeamInfo,
-                    LastModifyOpenId = openId,
+                    LastModifyUserId = UserId,
                     LastModifyTime = DateTime.Now
                 })
                 .Where(a => a.ID == dto.ID)
@@ -241,8 +238,8 @@ namespace dy.Repository
 
             Role role = new Role();
             int result = 0;
-            
-            //var memberOpenId = db.Queryable<TeamMember>().Where(a => a.ID == dto.MemberId && a.IsDeleted == false).First()?.OpenId; //查询成员openId
+
+            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到UserId
 
             string CreatorRoleId = string.Empty; //创建者角色Id
             string AdminRoleId = string.Empty; //管理角色Id
@@ -253,7 +250,7 @@ namespace dy.Repository
                     db.BeginTran();
 
                     //找到转让人Id
-                    var transId = db.Queryable<TeamMember>().Where(t => t.TeamId == dto.TeamId && t.OpenId == openId).First()?.ID;
+                    var transId = db.Queryable<TeamMember>().Where(t => t.TeamId == dto.TeamId && t.CreateUserId == UserId).First()?.ID;
 
                     AdminRoleId = db.Queryable<Role>().Where(r => r.TeamId == dto.TeamId && r.Name == AppConsts.RoleName.Admin).First()?.ID;
 
@@ -264,7 +261,7 @@ namespace dy.Repository
                         .Where(t => t.ID == transId);
 
                     //更新团队创建者
-                    db.Updateable<Team>().SetColumns(a => new Team() { LastModifyOpenId = openId, LastModifyTime = DateTime.Now })
+                    db.Updateable<Team>().SetColumns(a => new Team() { LastModifyUserId = UserId, LastModifyTime = DateTime.Now })
                         .Where(a => a.ID == dto.TeamId);
 
                     //更新成员角色、修改时间

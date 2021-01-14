@@ -76,12 +76,14 @@ namespace dy.Api.WeChat
         [HttpPost("PostUserAsync")]
         public async Task<IActionResult> PostUserAsync([FromBody]AddUserInfoDto input)
         {
+            var tokenInfo = GetTokenInfo();
+            var openId = tokenInfo.OpenId;
+            var sessionKey = tokenInfo.SessionKey;
+            
             try
             {
-                //需要截取Bearer 
-                var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
-                var data = await _userService.PostUserAsync(input, tokenHeader);
+                var data = await _userService.PostUserAsync(input, openId, sessionKey);
                 return SuccessMsg();
             }
             catch(Exception err)

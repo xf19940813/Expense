@@ -45,15 +45,7 @@ namespace dy.Api.WeChat
         [HttpPost("PostRoleAsync")]
         public async Task<IActionResult> PostRoleAsync([FromBody]AddRoleDto dto)
         {
-            //从Header中获取Token
-            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-            bool isKey = _redisCacheManager.Get(tokenHeader);
-            string openId = string.Empty;
-            if(isKey)
-            {
-                openId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
-            }
-
+            string openId = GetOpenId();
             try
             {
                 await _roleServices.PostRoleAsync(dto, openId);

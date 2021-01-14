@@ -28,9 +28,9 @@ namespace dy.Model.Expense
         public string TeamInfo { get; set; }
 
         /// <summary>
-        /// 创建人Id-OpenId
+        /// 创建人
         /// </summary>
-        public string CreatorId { get; set; }
+        public string CreateUserId { get; set; }
 
         /// <summary>
         /// 创建时间
@@ -40,7 +40,7 @@ namespace dy.Model.Expense
         /// <summary>
         /// 修改人
         /// </summary>
-        public string LastModifyOpenId { get; set; }
+        public string LastModifyUserId { get; set; }
 
         /// <summary>
         /// 修改时间

@@ -31,32 +31,24 @@ namespace dy.Repository
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> PostUserAsync(AddUserInfoDto input, string tokenHeader)
+        public async Task<bool> PostUserAsync(AddUserInfoDto input, string openId, string sessionKey)
         {
             Wx_UserInfo user = iMapper.Map<Wx_UserInfo>(input);
             user.ID = IdHelper.CreateGuid();
 
-            string OpenId = string.Empty;
-            string SessionKey = string.Empty;
-            bool isKey = _redisCacheManager.Get(tokenHeader);
-            if (isKey)
+            if (openId != null)
             {
-                OpenId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
-                SessionKey = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[1].Trim('"');
-                if (OpenId != null)
+                user.OpenId = openId;
+                if (input.EncryptedData != "" && input.IV != "")
                 {
-                    user.OpenId = OpenId;
-                    if (input.EncryptedData != "" && input.IV != "")
-                    {
-                        user.MobilePhone = WxHelper.getPhoneNumber(input.EncryptedData, input.IV, SessionKey);
-                    }
+                    user.MobilePhone = WxHelper.getPhoneNumber(input.EncryptedData, input.IV, sessionKey);
                 }
             }
 
             var result = 0;
             return await Task.Run(() =>
             {
-                var isAny = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == OpenId).Any();
+                var isAny = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).Any();
                 
                 if (isAny == false)
                 {
@@ -64,8 +56,11 @@ namespace dy.Repository
                 }
                 else
                 {
+                    if (user.MobilePhone == null)
+                        throw new Exception("没有获取到用户手机号码！");
+
                     result = db.Updateable<Wx_UserInfo>().SetColumns(a => new Wx_UserInfo() { MobilePhone = user.MobilePhone, FollowDate = DateTime.Now })
-                                .Where(a => a.OpenId == OpenId).ExecuteCommand();
+                                .Where(a => a.OpenId == openId).ExecuteCommand();
                 }
                 return result > 0;
             });

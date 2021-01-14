@@ -52,6 +52,11 @@ namespace dy.Model.Dto
     public class QueryUserInfoDto
     {
         /// <summary>
+        /// 用户Id
+        /// </summary>
+        public string UserId { get; set; }
+
+        /// <summary>
         /// 昵称
         /// </summary>
         public string NickName { get; set; }

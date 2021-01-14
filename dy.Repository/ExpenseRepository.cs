@@ -5,7 +5,9 @@ using dy.IRepository;
 using dy.Model;
 using dy.Model.Dto;
 using dy.Model.Expense;
+using dy.Model.User;
 using Microsoft.AspNetCore.Authorization;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,23 +30,17 @@ namespace dy.Repository
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> PostExpenseInfoAsync(AddExpenseInfoDto input, string tokenHeader)
+        public async Task<bool> PostExpenseInfoAsync(AddExpenseInfoDto input, string openId)
         {
             if(input.TeamId == null) throw new Exception("团队Id不能为空！");
 
-            string OpenId = string.Empty;
-            bool isKey = _redisCacheManager.Get(tokenHeader);
+            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到UserId
 
-            if (isKey)
-            {
-                OpenId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
-            }
-
-            var FreeQuota = db.Queryable<TeamMember>().Where(a => a.TeamId == input.TeamId && a.OpenId == OpenId).First()?.FreeQuota;
+            var FreeQuota = db.Queryable<TeamMember>().Where(a => a.TeamId == input.TeamId && a.CreateUserId == UserId).First()?.FreeQuota;
 
             ExpenseInfo expense = iMapper.Map<ExpenseInfo>(input);
             expense.ID = IdHelper.CreateGuid();
-            expense.OpenId = OpenId;
+            expense.CreateUserId = UserId;
             expense.IsDeleted = false;
 
             if (input.Amount > FreeQuota)
@@ -76,9 +72,14 @@ namespace dy.Repository
             {
                 PageResult<ExpenseInfo> pageResult = new PageResult<ExpenseInfo>();
 
-                var data = entityDB.AsQueryable().WhereIF(Status>=0, it => it.AuditStatus == Status).Where(a => a.TeamId == teamId).OrderBy("CreateTime desc")
+                var data = db.Queryable<ExpenseInfo, TeamMember>((a, b) => new JoinQueryInfos
+                (
+                    JoinType.Inner, a.TeamId == b.TeamId && a.CreateUserId == b.CreateUserId
+                ))
+                .WhereIF(Status>=0, (a, b) => a.AuditStatus == Status)
+                .Where((a, b) => a.TeamId == teamId).OrderBy("a.CreateTime desc")
                 .ToPageList(pageIndex, pageSize);
-                pageResult.totalCount = entityDB.AsQueryable().Count();
+                pageResult.totalCount = entityDB.AsQueryable().Where(a => a.IsDeleted == false).Count();
                 pageResult.pageIndex = pageIndex;
                 pageResult.pageSize = pageSize;
                 pageResult.data = data;

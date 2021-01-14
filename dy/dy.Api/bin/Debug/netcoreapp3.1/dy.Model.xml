@@ -349,6 +349,21 @@
             免审额度
             </summary>
         </member>
+        <member name="T:dy.Model.Dto.GetTeamNickNameDto">
+            <summary>
+            获取成员昵称
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.GetTeamNickNameDto.MemberId">
+            <summary>
+            成员Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.GetTeamNickNameDto.TeamNickName">
+            <summary>
+            在团队里的昵称
+            </summary>
+        </member>
         <member name="T:dy.Model.Dto.AddUserInfoDto">
             <summary>
             添加用户信息
@@ -397,6 +412,11 @@
         <member name="T:dy.Model.Dto.QueryUserInfoDto">
             <summary>
             查询用户信息
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QueryUserInfoDto.UserId">
+            <summary>
+            用户Id
             </summary>
         </member>
         <member name="P:dy.Model.Dto.QueryUserInfoDto.NickName">
@@ -474,11 +494,6 @@
             团队Id
             </summary>
         </member>
-        <member name="P:dy.Model.Expense.ExpenseInfo.OpenId">
-            <summary>
-            用户唯一标识
-            </summary>
-        </member>
         <member name="P:dy.Model.Expense.ExpenseInfo.Amount">
             <summary>
             金额
@@ -509,9 +524,24 @@
             备注
             </summary>
         </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.CreateUserId">
+            <summary>
+            创建人
+            </summary>
+        </member>
         <member name="P:dy.Model.Expense.ExpenseInfo.CreateTime">
             <summary>
             创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.AuditUserId">
+            <summary>
+            审核人
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.AuditTime">
+            <summary>
+            审核时间
             </summary>
         </member>
         <member name="P:dy.Model.Expense.ExpenseInfo.IsDeleted">
@@ -539,9 +569,9 @@
             团队信息
             </summary>
         </member>
-        <member name="P:dy.Model.Expense.Team.CreatorId">
+        <member name="P:dy.Model.Expense.Team.CreateUserId">
             <summary>
-            创建人Id-OpenId
+            创建人
             </summary>
         </member>
         <member name="P:dy.Model.Expense.Team.CreateTime">
@@ -549,7 +579,7 @@
             创建时间
             </summary>
         </member>
-        <member name="P:dy.Model.Expense.Team.LastModifyOpenId">
+        <member name="P:dy.Model.Expense.Team.LastModifyUserId">
             <summary>
             修改人
             </summary>
@@ -599,11 +629,6 @@
             手机号码
             </summary>
         </member>
-        <member name="P:dy.Model.Expense.TeamMember.OpenId">
-            <summary>
-            用户唯一标识
-            </summary>
-        </member>
         <member name="P:dy.Model.Expense.TeamMember.TeamId">
             <summary>
             团队Id
@@ -614,9 +639,19 @@
             角色Id
             </summary>
         </member>
+        <member name="P:dy.Model.Expense.TeamMember.CreateUserId">
+            <summary>
+            创建人
+            </summary>
+        </member>
         <member name="P:dy.Model.Expense.TeamMember.CreateTime">
             <summary>
             创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.LastModifyUserId">
+            <summary>
+            修改人
             </summary>
         </member>
         <member name="P:dy.Model.Expense.TeamMember.LastModifyTime">
@@ -674,6 +709,11 @@
             是否启用
             </summary>
         </member>
+        <member name="P:dy.Model.Setting.Role.CreatorUserId">
+            <summary>
+            创建人
+            </summary>
+        </member>
         <member name="P:dy.Model.Setting.Role.IsDeleted">
             <summary>
             是否删除
@@ -684,19 +724,14 @@
             创建时间
             </summary>
         </member>
-        <member name="P:dy.Model.Setting.Role.CreatorOpenId">
+        <member name="P:dy.Model.Setting.Role.LastModifyUserId">
             <summary>
-            创建人
+            修改人
             </summary>
         </member>
         <member name="P:dy.Model.Setting.Role.LastModifyTime">
             <summary>
-            最后修改时间
-            </summary>
-        </member>
-        <member name="P:dy.Model.Setting.Role.LastModifyOpenId">
-            <summary>
-            最后修改人
+            修改时间
             </summary>
         </member>
         <member name="P:dy.Model.Setting.Role.TeamId">

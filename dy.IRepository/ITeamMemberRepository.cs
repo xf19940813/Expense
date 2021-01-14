@@ -15,7 +15,7 @@ namespace dy.IRepository
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string tokenHeader);
+        Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string openId, string sessionKey);
 
         /// <summary>
         /// 分页获取成员数据
@@ -41,7 +41,7 @@ namespace dy.IRepository
         Task<bool> UpdateTeamNickNameAsync(UpdateTeamNickNameDto dto);
 
         /// <summary>
-        /// 根据成员Id查询当前成员的角色
+        /// 根据团队Id查询当前成员的角色
         /// </summary>
         /// <param name="teamId"></param>
         /// <param name="openId"></param>
@@ -64,5 +64,13 @@ namespace dy.IRepository
         /// <param name="dto"></param>
         /// <returns></returns>
         Task<bool> UpdateMemberQuotaAsync(UpdateMemberQuotaDto dto);
+
+        /// <summary>
+        /// 获取当前成员在团队的昵称
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <param name="openId"></param>
+        /// <returns></returns>
+        Task<GetTeamNickNameDto> GetTeamNickNameAsync(string teamId, string openId);
     }
 }

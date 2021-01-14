@@ -15,7 +15,7 @@ namespace dy.IRepository
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<bool> PostExpenseInfoAsync(AddExpenseInfoDto input, string tokenHeader);
+        Task<bool> PostExpenseInfoAsync(AddExpenseInfoDto input, string openId);
 
         /// <summary>
         /// 我的报销分页查询

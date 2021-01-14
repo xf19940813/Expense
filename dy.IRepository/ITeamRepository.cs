@@ -15,7 +15,7 @@ namespace dy.IRepository
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<bool> PostTeamAsync(AddTeamDto input, string tokenHeader);
+        Task<bool> PostTeamAsync(AddTeamDto input, string openId);
 
         /// <summary>
         /// 团队列表分页查询

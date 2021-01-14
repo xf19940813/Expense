@@ -45,11 +45,10 @@ namespace dy.Api.WeChat
         [HttpPost("PostTeamAsync")]
         public async Task<IActionResult> PostTeamAsync([FromBody] AddTeamDto input)
         {
-            //从Header中获取Token
-            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            string openId = GetOpenId();
             try
             {
-                var data = await _teamServices.PostTeamAsync(input, tokenHeader);
+                var data = await _teamServices.PostTeamAsync(input, openId);
                 return SuccessMsg();
             }
             catch(Exception err)
@@ -70,16 +69,7 @@ namespace dy.Api.WeChat
         [HttpGet("GetTeamListAsync")]
         public async Task<IActionResult> GetTeamListAsync(int pageIndex, int pageSize)
         {
-            //从Header中获取Token
-            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-            bool isKey = _redisCacheManager.Get(tokenHeader);
-            string openId = string.Empty;
-            if (isKey)
-            {
-                //根据Token中的信息获取到OpenId
-                openId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
-            }
-
+            string openId = GetOpenId();
             try
             {
                 var data = await _teamServices.GetTeamListAsync(pageIndex, pageSize, openId);
@@ -102,15 +92,7 @@ namespace dy.Api.WeChat
         [HttpPut("UpdateTeamAsync")]
         public async Task<IActionResult> UpdateTeamAsync([FromBody]UpdateTeamDto dto)
         {
-            //从Header中获取Token
-            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-            bool isKey = _redisCacheManager.Get(tokenHeader);
-            string openId = string.Empty;
-            if (isKey)
-            {
-                openId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
-            }
-
+            string openId = GetOpenId();
             try
             {
                 var data = await _teamServices.UpdateTeamAsync(dto, openId);
@@ -175,15 +157,7 @@ namespace dy.Api.WeChat
         [HttpPut("TransferTeamAsync")]
         public async Task<IActionResult> TransferTeamAsync([FromBody] TransferTeamDto dto)
         {
-            //从Header中获取Token
-            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-            bool isKey = _redisCacheManager.Get(tokenHeader);
-            string openId = string.Empty;
-            if (isKey)
-            {
-                openId = _redisCacheManager.GetValue(tokenHeader).ToString().Split(";")[0].Trim('"');
-            }
-
+            string openId = GetOpenId();
             try
             {
                 var data = await _teamServices.TransferTeamAsync(dto, openId);
