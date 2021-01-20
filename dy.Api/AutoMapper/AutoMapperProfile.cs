@@ -33,6 +33,8 @@ namespace dy.Api.AutoMapper
             CreateMap<AddRoleDto, Role>(); //角色
 
             CreateMap<AddTeamMemberDto, Wx_UserInfo>(); //用户信息
+
+            CreateMap<OfflinePaymentDto, PaymentRecord>(); //线下付款
         }
     }
 }

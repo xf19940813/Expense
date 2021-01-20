@@ -68,9 +68,10 @@ namespace dy.Api.WeChat
         [HttpPut("UpdateTeamMemberRoleAsync")]
         public async Task<IActionResult> UpdateTeamMemberRoleAsync([FromBody] UpdateRoleDto dto)
         {
+            string openId = GetOpenId();
             try
             {
-                var data = await _roleServices.UpdateTeamMemberRoleAsync(dto);
+                var data = await _roleServices.UpdateTeamMemberRoleAsync(dto, openId);
                 return Ok(data);
             }
             catch(Exception err)
@@ -99,6 +100,7 @@ namespace dy.Api.WeChat
                 _logger.Error(typeof(SettingController), "获取角色列表失败!", new Exception(err.Message));
                 return FailedMsg("获取角色列表失败！" + err.Message);
             }
+
         }
     }
 }

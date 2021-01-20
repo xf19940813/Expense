@@ -24,3 +24,5 @@ E:\code\dy\dy.IServices\obj\Debug\netcoreapp3.1\dy.IServices.csproj.CoreCompileI
 E:\code\dy\dy.IServices\obj\Debug\netcoreapp3.1\dy.IServices.csproj.CopyComplete
 E:\code\dy\dy.IServices\obj\Debug\netcoreapp3.1\dy.IServices.dll
 E:\code\dy\dy.IServices\obj\Debug\netcoreapp3.1\dy.IServices.pdb
+E:\code\dy\dy.IServices\bin\Debug\netcoreapp3.1\dy.Common.dll
+E:\code\dy\dy.IServices\bin\Debug\netcoreapp3.1\dy.Common.pdb

@@ -55,12 +55,14 @@ namespace dy.Repository
         /// <param name="dto"></param>
 
         /// <returns></returns>
-        public async Task<QueryRoleDto> UpdateTeamMemberRoleAsync(UpdateRoleDto dto)
+        public async Task<QueryRoleDto> UpdateTeamMemberRoleAsync(UpdateRoleDto dto, string openId)
         {
+            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID;
             return await Task.Run(() =>
             {
                 var result = db.Updateable<TeamMember>().SetColumns(a => new TeamMember() { 
                     RoleId = dto.RoleId, 
+                    LastModifyUserId = UserId,
                     LastModifyTime = DateTime.Now 
                 })
                 .Where(a => a.ID == dto.MemberId && dto.TeamId == dto.TeamId).ExecuteCommand();

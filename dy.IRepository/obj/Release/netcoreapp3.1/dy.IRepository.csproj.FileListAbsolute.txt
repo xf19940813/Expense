@@ -22,3 +22,5 @@ E:\code\dy\dy.IRepository\obj\Release\netcoreapp3.1\dy.IRepository.csproj.CoreCo
 E:\code\dy\dy.IRepository\obj\Release\netcoreapp3.1\dy.IRepository.csproj.CopyComplete
 E:\code\dy\dy.IRepository\obj\Release\netcoreapp3.1\dy.IRepository.dll
 E:\code\dy\dy.IRepository\obj\Release\netcoreapp3.1\dy.IRepository.pdb
+E:\code\dy\dy.IRepository\bin\Release\netcoreapp3.1\dy.Common.dll
+E:\code\dy\dy.IRepository\bin\Release\netcoreapp3.1\dy.Common.pdb

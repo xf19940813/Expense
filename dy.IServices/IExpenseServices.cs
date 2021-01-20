@@ -15,7 +15,7 @@ namespace dy.IServices
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<bool> PostExpenseInfoAsync(AddExpenseInfoDto input, string tokenHeader);
+        Task<string> PostExpenseInfoAsync(AddExpenseInfoDto input, string openId);
 
         /// <summary>
         /// 我的报销分页查询
@@ -25,14 +25,14 @@ namespace dy.IServices
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">一页显示多少条</param>
         /// <returns></returns>
-        Task<PageResult<ExpenseInfo>> GetExpenseInfoByStatus(string teamId, short? Status, int pageIndex, int pageSize);
+        Task<PageResult<ExpenseInfo>> GetExpenseInfoByStatus(string teamId, short? Status, int pageIndex, int pageSize, string openId);
 
         /// <summary>
         /// 审核
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
-        Task<bool> AuditAsync(string Id);
+        Task<bool> AuditAsync(AuditDto dto, string openId);
 
         /// <summary>
         /// 完结
@@ -40,5 +40,12 @@ namespace dy.IServices
         /// <param name="Id"></param>
         /// <returns></returns>
         Task<bool> FinishedAsync(string Id);
+
+        /// <summary>
+        /// 报销单详情
+        /// </summary>
+        /// <param name="ExpenseId">报销单Id</param>
+        /// <returns></returns>
+        Task<ExpenseInfoDetailDto> GetExpenseDetailByIdAsync(string ExpenseId);
     }
 }

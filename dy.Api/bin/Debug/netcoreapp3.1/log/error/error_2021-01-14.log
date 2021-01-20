@@ -1,0 +1,86 @@
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-14 10:11:06,972                                   
+【执行时间】[58636]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamMemberController 属性[(null)]                                   
+【错误描述】获取成员列表失败!                                   
+【错误详情】
+System.Exception: Invalid column name 'JoinedTime'.
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-14 10:30:09,420                                   
+【执行时间】[79222]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamMemberController 属性[(null)]                                   
+【错误描述】获取成员列表失败!                                   
+【错误详情】
+System.Exception: English Message : Connection open error . A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。)
+Chinese Message :  连接数据库过程中发生错误，检查服务器是否正常连接字符串是否正确，实在找不到原因请先Google错误信息：A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。).
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-14 10:30:10,046                                   
+【执行时间】[79848]毫秒                                   
+【错误位置】System.String 属性[(null)]                                   
+【错误描述】出现未知异常                                   
+【错误详情】
+System.Exception: Redis服务未开启，请开启该服务
+   at dy.Common.Redis.RedisCacheManager.GetRedisConnection() in E:\code\dy\dy.Common\Redis\RedisCacheManager.cs:line 59
+   at dy.Common.Redis.RedisCacheManager..ctor() in E:\code\dy\dy.Common\Redis\RedisCacheManager.cs:line 28
+   at dy.Api.Controllers.BaseController..ctor() in E:\code\dy\dy.Api\Controllers\BaseController.cs:line 20
+   at dy.Api.WeChat.TeamMemberController..ctor(ITeamMemberServices memberServices, IRedisCacheManager redisCacheManager, ILoggerHelper loggerHelper) in E:\code\dy\dy.Api\WeChat\TeamMemberController.cs:line 31
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-14 10:34:46,462                                   
+【执行时间】[356263]毫秒                                   
+【错误位置】System.String 属性[(null)]                                   
+【错误描述】出现未知异常                                   
+【错误详情】
+System.Exception: Redis服务未开启，请开启该服务
+   at dy.Common.Redis.RedisCacheManager.GetRedisConnection() in E:\code\dy\dy.Common\Redis\RedisCacheManager.cs:line 59
+   at dy.Common.Redis.RedisCacheManager..ctor() in E:\code\dy\dy.Common\Redis\RedisCacheManager.cs:line 28
+   at dy.Api.Controllers.BaseController..ctor() in E:\code\dy\dy.Api\Controllers\BaseController.cs:line 20
+   at dy.Api.WeChat.TeamMemberController..ctor(ITeamMemberServices memberServices, IRedisCacheManager redisCacheManager, ILoggerHelper loggerHelper) in E:\code\dy\dy.Api\WeChat\TeamMemberController.cs:line 31
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-14 10:36:38,108                                   
+【执行时间】[44714]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamMemberController 属性[(null)]                                   
+【错误描述】获取成员列表失败!                                   
+【错误详情】
+System.Exception: Invalid column name 'JoinedTime'.
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-14 18:15:37,474                                   
+【执行时间】[50522]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamController 属性[(null)]                                   
+【错误描述】获取报销单详情失败!                                   
+【错误详情】
+System.Exception: variable 'a' of type 'dy.Model.Expense.ExpenseInfo' referenced from scope '', but it is not defined
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-14 18:29:40,956                                   
+【执行时间】[42549]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamController 属性[(null)]                                   
+【错误描述】获取报销单详情失败!                                   
+【错误详情】
+System.Exception: variable 'a' of type 'dy.Model.Expense.ExpenseInfo' referenced from scope '', but it is not defined

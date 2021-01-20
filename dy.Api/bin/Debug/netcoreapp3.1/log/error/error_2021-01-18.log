@@ -1,0 +1,27 @@
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-18 16:00:00,519                                   
+【执行时间】[88756]毫秒                                   
+【错误位置】dy.Api.WeChat.WxPayController 属性[(null)]                                   
+【错误描述】付款到零钱失败！                                   
+【错误详情】
+System.Exception: Internal.Cryptography.CryptoThrowHelper+WindowsCryptographicException: 系统找不到指定的路径。
+   at Internal.Cryptography.Pal.CertificatePal.FromBlobOrFile(Byte[] rawData, String fileName, SafePasswordHandle password, X509KeyStorageFlags keyStorageFlags)
+   at System.Security.Cryptography.X509Certificates.X509Certificate..ctor(String fileName, String password, X509KeyStorageFlags keyStorageFlags)
+   at System.Security.Cryptography.X509Certificates.X509Certificate2..ctor(String fileName, String password, X509KeyStorageFlags keyStorageFlags)
+   at dy.Common.Helper.WxPayCore.HttpPostResponseWxPay(String url, String xmlParam) in E:\code\dy\dy.Common\Helper\WxPayCore.cs:line 89
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-18 16:24:34,324                                   
+【执行时间】[60757]毫秒                                   
+【错误位置】dy.Api.WeChat.WxPayController 属性[(null)]                                   
+【错误描述】付款到零钱失败！                                   
+【错误详情】
+System.Exception: Internal.Cryptography.CryptoThrowHelper+WindowsCryptographicException: 指定的网络密码不正确。
+   at Internal.Cryptography.Pal.CertificatePal.FilterPFXStore(Byte[] rawData, SafePasswordHandle password, PfxCertStoreFlags pfxCertStoreFlags)
+   at Internal.Cryptography.Pal.CertificatePal.FromBlobOrFile(Byte[] rawData, String fileName, SafePasswordHandle password, X509KeyStorageFlags keyStorageFlags)
+   at System.Security.Cryptography.X509Certificates.X509Certificate..ctor(String fileName, String password, X509KeyStorageFlags keyStorageFlags)
+   at System.Security.Cryptography.X509Certificates.X509Certificate..ctor(String fileName, String password)
+   at dy.Common.Helper.WxPayCore.HttpPostResponseWxPay(String url, String xmlParam) in E:\code\dy\dy.Common\Helper\WxPayCore.cs:line 89

@@ -12,7 +12,6 @@ E:\code\dy\dy.Common\bin\Debug\netcoreapp3.1\dy.Common.dll
 E:\code\dy\dy.Common\bin\Debug\netcoreapp3.1\dy.Common.pdb
 E:\code\dy\dy.Common\obj\Debug\netcoreapp3.1\dy.Common.AssemblyInfoInputs.cache
 E:\code\dy\dy.Common\obj\Debug\netcoreapp3.1\dy.Common.AssemblyInfo.cs
-E:\code\dy\dy.Common\obj\Debug\netcoreapp3.1\dy.Common.csproj.CoreCompileInputs.cache
 E:\code\dy\dy.Common\obj\Debug\netcoreapp3.1\dy.Common.dll
 E:\code\dy\dy.Common\obj\Debug\netcoreapp3.1\dy.Common.pdb
 E:\code\dy\dy.Common\bin\Debug\netcoreapp3.1\dy.Model.dll
@@ -20,3 +19,4 @@ E:\code\dy\dy.Common\bin\Debug\netcoreapp3.1\dy.Model.pdb
 E:\code\dy\dy.Common\bin\Debug\netcoreapp3.1\dy.Model.xml
 E:\code\dy\dy.Common\obj\Debug\netcoreapp3.1\dy.Common.csproj.CopyComplete
 E:\code\dy\dy.Common\obj\Debug\netcoreapp3.1\dy.Common.csprojAssemblyReference.cache
+E:\code\dy\dy.Common\obj\Debug\netcoreapp3.1\dy.Common.csproj.CoreCompileInputs.cache

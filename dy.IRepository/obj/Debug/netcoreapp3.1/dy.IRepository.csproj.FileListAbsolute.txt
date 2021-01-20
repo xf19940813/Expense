@@ -24,3 +24,5 @@ E:\code\dy\dy.IRepository\obj\Debug\netcoreapp3.1\dy.IRepository.csproj.CoreComp
 E:\code\dy\dy.IRepository\obj\Debug\netcoreapp3.1\dy.IRepository.csproj.CopyComplete
 E:\code\dy\dy.IRepository\obj\Debug\netcoreapp3.1\dy.IRepository.dll
 E:\code\dy\dy.IRepository\obj\Debug\netcoreapp3.1\dy.IRepository.pdb
+E:\code\dy\dy.IRepository\bin\Debug\netcoreapp3.1\dy.Common.dll
+E:\code\dy\dy.IRepository\bin\Debug\netcoreapp3.1\dy.Common.pdb

@@ -45,7 +45,7 @@ namespace dy.Api.WeChat
             try
             {
                 var data = await _expenseServices.PostExpenseInfoAsync(input, openId);
-                return AddSuccessMsg();
+                return Ok(data);
             }
             catch(Exception err)
             {
@@ -66,9 +66,10 @@ namespace dy.Api.WeChat
         [HttpGet("GetExpenseInfoAsync")]
         public async Task<IActionResult> GetExpenseInfoAsync(string teamId, short? Status, int pageIndex, int pageSize)
         {
+            string openId = GetOpenId();
             try
             {
-                var data = await _expenseServices.GetExpenseInfoByStatus(teamId, Status, pageIndex, pageSize);
+                var data = await _expenseServices.GetExpenseInfoByStatus(teamId, Status, pageIndex, pageSize, openId);
                 return Ok(data);
 
             }
@@ -81,17 +82,41 @@ namespace dy.Api.WeChat
         }
 
         /// <summary>
-        /// 审核
+        /// 报销单详情
         /// </summary>
-        /// <param name="Id">报销信息Id</param>
+        /// <param name="ExpenseId"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpPut("AuditAsync")]
-        public async Task<IActionResult> AuditAsync([FromBody]string Id)
+        [HttpGet("GetExpenseDetailByIdAsync")]
+        public async Task<IActionResult> GetExpenseDetailByIdAsync(string ExpenseId)
         {
             try
             {
-                var data = await _expenseServices.AuditAsync(Id);
+                var data = await _expenseServices.GetExpenseDetailByIdAsync(ExpenseId);
+                return Ok(data);
+
+            }
+            catch (Exception err)
+            {
+
+                _logger.Error(typeof(TeamController), "获取报销单详情失败!", new Exception(err.Message));
+                return FailedMsg("获取报销单详情失败! " + err.Message);
+            }
+        }
+
+        /// <summary>
+        /// 审核
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPut("AuditAsync")]
+        public async Task<IActionResult> AuditAsync([FromBody]AuditDto dto)
+        {
+            string openId = GetOpenId();
+            try
+            {
+                var data = await _expenseServices.AuditAsync(dto, openId);
                 return AuditSuccessMsg();
             }
             catch (Exception err)

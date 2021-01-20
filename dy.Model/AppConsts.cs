@@ -94,5 +94,29 @@ namespace dy.Model
             /// </summary>
             public const string BlackList = "黑名单";
         }
+
+        /// <summary>
+        /// 付款方式
+        /// </summary>
+        public class PaymentType
+        {
+            /// <summary>
+            /// 立即支付
+            /// </summary>
+            [Description("立即支付")]
+            public const int Promptly = 1;
+
+            /// <summary>
+            /// 财务确认
+            /// </summary>
+            [Description("财务确认")]
+            public const int FinanceVerify = 2;
+
+            /// <summary>
+            /// 线下
+            /// </summary>
+            [Description("线下")]
+            public const int Offline = 3;
+        }
     }
 }

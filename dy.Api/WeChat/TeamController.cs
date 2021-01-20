@@ -114,9 +114,10 @@ namespace dy.Api.WeChat
         [HttpDelete("DeleteByIdAsync")]
         public async Task<IActionResult> DeleteByIdAsync(string Id)
         {
+            string openId = GetOpenId();
             try
             {
-                await _teamServices.DeleteByIdAsync(Id);
+                await _teamServices.DeleteByIdAsync(Id, openId);
                 return DeleteSuccessMsg();
             }
             catch(Exception err)

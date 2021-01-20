@@ -5,6 +5,7 @@ using dy.IRepository;
 using dy.Model;
 using dy.Model.Dto;
 using dy.Model.Expense;
+using dy.Model.Setting;
 using dy.Model.User;
 using Microsoft.AspNetCore.Authorization;
 using SqlSugar;
@@ -30,13 +31,17 @@ namespace dy.Repository
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> PostExpenseInfoAsync(AddExpenseInfoDto input, string openId)
+        public async Task<string> PostExpenseInfoAsync(AddExpenseInfoDto input, string openId)
         {
             if(input.TeamId == null) throw new Exception("团队Id不能为空！");
 
+            var isEnabled = db.Queryable<Team>().Where(a => a.ID == input.TeamId).First()?.IsEnabled;
+            if (isEnabled == false)
+                throw new Exception("该团队处于禁用状态，不能申请报销!");
+
             var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到UserId
 
-            var FreeQuota = db.Queryable<TeamMember>().Where(a => a.TeamId == input.TeamId && a.CreateUserId == UserId).First()?.FreeQuota;
+            var FreeQuota = db.Queryable<TeamMember>().Where(a => a.TeamId == input.TeamId && a.JoinedUserId == UserId).First()?.FreeQuota;
 
             ExpenseInfo expense = iMapper.Map<ExpenseInfo>(input);
             expense.ID = IdHelper.CreateGuid();
@@ -51,7 +56,10 @@ namespace dy.Repository
             return await Task.Run(() =>
             {
                 var result = db.Insertable(expense).ExecuteCommand();
-                return result > 0;
+
+                if (result <= 0) throw new Exception("添加失败");
+
+                return expense.ID;
             });
         }
 
@@ -64,9 +72,22 @@ namespace dy.Repository
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">一页显示多少条</param>
         /// <returns></returns>
-        public async Task<PageResult<ExpenseInfo>> GetExpenseInfoByStatus(string teamId, short? Status, int pageIndex, int pageSize)
+        public async Task<PageResult<ExpenseInfo>> GetExpenseInfoByStatus(string teamId, short? Status, int pageIndex, int pageSize, string openId)
         {
             if (teamId == null) throw new Exception("团队Id为空！");
+
+            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First().ID;
+
+            var Role = db.Queryable<TeamMember, Role>((t, r) => new JoinQueryInfos
+            (
+                JoinType.Inner, t.RoleId == r.ID && t.TeamId == r.TeamId
+            ))
+            .Where((t, r) => t.JoinedUserId == UserId)
+            .Select((t, r) => new QueryRoleDto
+            {
+                RoleId = t.RoleId,
+                RoleName = r.Name
+            }).First();
 
             return await Task.Run(() =>
             {
@@ -74,10 +95,13 @@ namespace dy.Repository
 
                 var data = db.Queryable<ExpenseInfo, TeamMember>((a, b) => new JoinQueryInfos
                 (
-                    JoinType.Inner, a.TeamId == b.TeamId && a.CreateUserId == b.CreateUserId
+                    JoinType.Inner, a.TeamId == b.TeamId && a.CreateUserId == b.JoinedUserId
                 ))
                 .WhereIF(Status>=0, (a, b) => a.AuditStatus == Status)
-                .Where((a, b) => a.TeamId == teamId).OrderBy("a.CreateTime desc")
+                .WhereIF(Role.RoleName == AppConsts.RoleName.Ordinary, (a, b) => b.RoleId == Role.RoleId)
+                .Where((a, b) => a.TeamId == teamId)
+                .Where((a, b) => b.IsDeleted == false)
+                .OrderBy("a.CreateTime desc")
                 .ToPageList(pageIndex, pageSize);
                 pageResult.totalCount = entityDB.AsQueryable().Where(a => a.IsDeleted == false).Count();
                 pageResult.pageIndex = pageIndex;
@@ -91,13 +115,17 @@ namespace dy.Repository
         /// <summary>
         /// 审核
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<bool> AuditAsync(string Id)
+        public async Task<bool> AuditAsync(AuditDto dto, string openId)
         {
+            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID;
+
             return await Task.Run(() =>
             {
-                var result = db.Updateable<ExpenseInfo>(a => a.AuditStatus == AppConsts.AuditStatus.Audited).Where(a => a.ID == Id).ExecuteCommand();
+                var result = db.Updateable<ExpenseInfo>()
+                .SetColumns(a => new ExpenseInfo() { AuditStatus = AppConsts.AuditStatus.Audited, AuditUserId = UserId, AuditTime = DateTime.Now })
+                .Where(a => a.ID == dto.Id).ExecuteCommand();
 
                 return result > 0;
             });
@@ -116,6 +144,52 @@ namespace dy.Repository
                 var result = db.Updateable<ExpenseInfo>(a => a.AuditStatus == AppConsts.AuditStatus.Finished).Where(a => a.ID == Id).ExecuteCommand();
 
                 return result > 0;
+            });
+        }
+
+        /// <summary>
+        /// 报销单详情
+        /// </summary>
+        /// <param name="ExpenseId"></param>
+        /// <returns></returns>
+        public async Task<ExpenseInfoDetailDto> GetExpenseDetailByIdAsync(string ExpenseId)
+        {
+            return await Task.Run(() =>
+            {
+                var query = db.Queryable<ExpenseInfo>().Where(a => a.ID == ExpenseId && a.IsDeleted == false).Select(a => new
+                {
+                    TeamId = a.TeamId,
+                    CreateUserId = a.CreateUserId,
+                    AuditUserId = a.AuditUserId
+                }).First();
+
+                var result = db.Queryable<ExpenseInfo, TeamMember>((a, b) => new JoinQueryInfos
+                (
+                    JoinType.Inner, a.TeamId == b.TeamId && a.CreateUserId == b.JoinedUserId
+                ))
+                .Where(a => a.ID == ExpenseId)
+                .Where((a, b) => b.IsDeleted == false)
+                .Select((a, b) => new ExpenseInfoDetailDto
+                {
+                    
+                    AuditStatus = a.AuditStatus,
+                    MobilePhone = b.MobilePhone,
+                    ConsumeProject = a.ConsumeProject,
+                    ExpenseType = a.ExpenseType,
+                    ConsumeTime = a.ConsumeTime,
+                    ApplyTime = a.CreateTime,
+                    AuditTime = a.AuditTime,
+                    Remarks = a.Remarks
+
+                }).First();
+
+                if (query.CreateUserId != null)
+                    result.Proposer = db.Queryable<TeamMember>().Where(a => a.JoinedUserId == query.CreateUserId && a.TeamId == query.TeamId).First().TeamNickName;
+                    
+                if (query.AuditUserId != null)
+                    result.Auditor = db.Queryable<TeamMember>().Where(a => a.JoinedUserId == query.AuditUserId && a.TeamId == query.TeamId).First().TeamNickName;
+
+                return result;
             });
         }
     }

@@ -84,6 +84,26 @@
             团队黑名单
             </summary>
         </member>
+        <member name="T:dy.Model.AppConsts.PaymentType">
+            <summary>
+            付款方式
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.PaymentType.Promptly">
+            <summary>
+            立即支付
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.PaymentType.FinanceVerify">
+            <summary>
+            财务确认
+            </summary>
+        </member>
+        <member name="F:dy.Model.AppConsts.PaymentType.Offline">
+            <summary>
+            线下
+            </summary>
+        </member>
         <member name="T:dy.Model.Dto.AddExpenseInfoDto">
             <summary>
             添加消费信息
@@ -117,6 +137,96 @@
         <member name="P:dy.Model.Dto.AddExpenseInfoDto.Remarks">
             <summary>
             备注
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.ExpenseInfoDetailDto">
+            <summary>
+            报销单详情
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.Proposer">
+            <summary>
+            申请人
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.Auditor">
+            <summary>
+            审核人
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.MobilePhone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.ConsumeProject">
+            <summary>
+            消费项目
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.ExpenseType">
+            <summary>
+            消费类型
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.ConsumeTime">
+            <summary>
+            消费时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.ApplyTime">
+            <summary>
+            报销时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.AuditTime">
+            <summary>
+            审核时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.Remarks">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.AuditDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AuditDto.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.OfflinePaymentDto">
+            <summary>
+            线下付款
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.OfflinePaymentDto.ExpenseId">
+            <summary>
+            报销单Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.OfflinePaymentDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.OfflinePaymentDto.Amount">
+            <summary>
+            金额
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.OfflinePaymentDto.PaymentType">
+            <summary>
+            付款方式
             </summary>
         </member>
         <member name="T:dy.Model.Dto.AddRoleDto">
@@ -209,6 +319,11 @@
             团队名称
             </summary>
         </member>
+        <member name="P:dy.Model.Dto.QueryTeamDto.IsEnabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
         <member name="T:dy.Model.Dto.GetTeamDto">
             <summary>
             获取团队信息
@@ -269,9 +384,9 @@
             头像
             </summary>
         </member>
-        <member name="P:dy.Model.Dto.QueryTeamMemberDto.CreateTime">
+        <member name="P:dy.Model.Dto.QueryTeamMemberDto.JoinedTime">
             <summary>
-            创建时间
+            加入时间
             </summary>
         </member>
         <member name="P:dy.Model.Dto.QueryTeamMemberDto.RoleName">
@@ -287,6 +402,11 @@
         <member name="P:dy.Model.Dto.AddTeamMemberDto.TeamId">
             <summary>
             团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddTeamMemberDto.InviterToken">
+            <summary>
+            邀请人的Token，根据邀请人Token获取邀请人的UserId
             </summary>
         </member>
         <member name="T:dy.Model.Dto.UpdateTeamNickNameDto">
@@ -444,6 +564,31 @@
             临时登录凭证 code
             </summary>
         </member>
+        <member name="T:dy.Model.Dto.WxPayDto">
+            <summary>
+            微信支付
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.WxPayDto.ExpenseId">
+            <summary>
+            报销单Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.WxPayDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.WxPayDto.Amount">
+            <summary>
+            金额
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.WxPayDto.PaymentType">
+            <summary>
+            付款方式
+            </summary>
+        </member>
         <member name="T:dy.Model.Enum.Gender">
             <summary>
             性别枚举
@@ -549,6 +694,81 @@
             是否删除
             </summary>
         </member>
+        <member name="T:dy.Model.Expense.PaymentRecord">
+            <summary>
+            付款记录
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.ID">
+            <summary>
+            主键ID
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.ExpenseId">
+            <summary>
+            报销单Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.PayeeUserId">
+            <summary>
+            收款用户Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.OperatorUserId">
+            <summary>
+            操作用户Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.PaymentType">
+            <summary>
+            付款方式
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.Amount">
+            <summary>
+            金额
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.Mchid">
+            <summary>
+            商户号
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.NonceStr">
+            <summary>
+            随机数
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.PartnerTradeNo">
+            <summary>
+            商户订单号
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.PaymentNo">
+            <summary>
+            付款单号
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.PaymentTime">
+            <summary>
+            付款时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.PaymentRecord.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
         <member name="T:dy.Model.Expense.Team">
             <summary>
             团队实体
@@ -639,14 +859,19 @@
             角色Id
             </summary>
         </member>
-        <member name="P:dy.Model.Expense.TeamMember.CreateUserId">
+        <member name="P:dy.Model.Expense.TeamMember.InviterUserId">
             <summary>
-            创建人
+            邀请人
             </summary>
         </member>
-        <member name="P:dy.Model.Expense.TeamMember.CreateTime">
+        <member name="P:dy.Model.Expense.TeamMember.JoinedUserId">
             <summary>
-            创建时间
+            加入人
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.TeamMember.JoinedTime">
+            <summary>
+            加入时间
             </summary>
         </member>
         <member name="P:dy.Model.Expense.TeamMember.LastModifyUserId">

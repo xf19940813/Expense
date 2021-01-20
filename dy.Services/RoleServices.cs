@@ -35,9 +35,9 @@ namespace dy.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<QueryRoleDto> UpdateTeamMemberRoleAsync(UpdateRoleDto dto)
+        public async Task<QueryRoleDto> UpdateTeamMemberRoleAsync(UpdateRoleDto dto, string openId)
         {
-            return await _roleDal.UpdateTeamMemberRoleAsync(dto);
+            return await _roleDal.UpdateTeamMemberRoleAsync(dto, openId);
         }
 
         /// <summary>

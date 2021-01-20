@@ -48,14 +48,18 @@ namespace dy.Model.Expense
         public string RoleId { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// 邀请人
         /// </summary>
-        public string CreateUserId { get; set; }
+        public string InviterUserId { get; set; }
+        /// <summary>
+        /// 加入人
+        /// </summary>
+        public string JoinedUserId { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// 加入时间
         /// </summary>
-        public DateTime CreateTime { get; set; } = DateTime.Now;
+        public DateTime JoinedTime { get; set; } = DateTime.Now;
 
         /// <summary>
         /// 修改人

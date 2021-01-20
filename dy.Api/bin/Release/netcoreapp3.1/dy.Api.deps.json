@@ -2432,6 +2432,7 @@
       },
       "dy.IRepository/1.0.0": {
         "dependencies": {
+          "dy.Common": "1.0.0",
           "dy.Model": "1.0.0"
         },
         "runtime": {
@@ -2443,6 +2444,7 @@
       },
       "dy.IServices/1.0.0": {
         "dependencies": {
+          "dy.Common": "1.0.0",
           "dy.Model": "1.0.0"
         },
         "runtime": {

@@ -1,0 +1,76 @@
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-15 09:51:34,708                                   
+【执行时间】[104028]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamController 属性[(null)]                                   
+【错误描述】获取报销单详情失败!                                   
+【错误详情】
+System.Exception: Exception has been thrown by the target of an invocation.
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-15 10:06:50,094                                   
+【执行时间】[66380]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamController 属性[(null)]                                   
+【错误描述】获取报销单详情失败!                                   
+【错误详情】
+System.Exception: Exception has been thrown by the target of an invocation.
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-15 10:13:20,626                                   
+【执行时间】[63838]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamController 属性[(null)]                                   
+【错误描述】获取报销单详情失败!                                   
+【错误详情】
+System.Exception: Exception has been thrown by the target of an invocation.
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-15 10:17:49,090                                   
+【执行时间】[71440]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamController 属性[(null)]                                   
+【错误描述】获取报销单详情失败!                                   
+【错误详情】
+System.Exception: Exception has been thrown by the target of an invocation.
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-15 10:30:31,380                                   
+【执行时间】[59764]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamController 属性[(null)]                                   
+【错误描述】获取报销单详情失败!                                   
+【错误详情】
+System.Exception: Exception has been thrown by the target of an invocation.
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-15 10:41:25,075                                   
+【执行时间】[46126]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamController 属性[(null)]                                   
+【错误描述】获取报销单详情失败!                                   
+【错误详情】
+System.Exception: Exception has been thrown by the target of an invocation.
+
+＝＝＝＝＝＝＝＝＝＝                                   
+【日志级别】ERROR                                   
+【记录时间】2021-01-15 10:48:11,290                                   
+【执行时间】[42036]毫秒                                   
+【错误位置】dy.Api.WeChat.TeamController 属性[(null)]                                   
+【错误描述】获取报销单详情失败!                                   
+【错误详情】
+System.Exception: An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.
+An object or column name is missing or empty. For SELECT INTO statements, verify each column has a name. For other statements, look for empty alias names. Aliases defined as "" or [] are not allowed. Change the alias to a valid name.

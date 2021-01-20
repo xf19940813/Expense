@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -61,5 +62,41 @@ namespace dy.Common.Helper
             byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
             return Convert.ToBase64String(s);
         }
+
+        
+        /// <summary>
+        /// 获取客户端IP
+        /// </summary>
+        /// <returns></returns>
+        //public static string GetUserIP()
+        //{
+        //    string ipv4 = String.Empty;
+        //    foreach (IPAddress ip in Dns.GetHostAddresses(GetClientIP()))
+        //    {
+        //        if (ip.AddressFamily.ToString() == "InterNetwork")
+        //        {
+        //            ipv4 = ip.ToString();
+        //            break;
+        //        }
+        //    }
+
+        //    if (ipv4 != String.Empty)
+        //    {
+        //        return ipv4;
+        //    }
+        //    // 利用 Dns.GetHostEntry 方法，由获取的 IPv6 位址反查 DNS 纪录，
+        //    // 再逐一判断何者为 IPv4 协议，即可转为 IPv4 位址。
+        //    foreach (IPAddress ip in Dns.GetHostEntry(GetClientIP()).AddressList)
+        //    //foreach (IPAddress ip in Dns.GetHostAddresses(Dns.GetHostName()))
+        //    {
+        //        if (ip.AddressFamily.ToString() == "InterNetwork")
+        //        {
+        //            ipv4 = ip.ToString();
+        //            break;
+        //        }
+        //    }
+
+        //    return ipv4;
+        //}
     }
 }

@@ -21,7 +21,7 @@ namespace dy.IRepository
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<QueryRoleDto> UpdateTeamMemberRoleAsync(UpdateRoleDto dto);
+        Task<QueryRoleDto> UpdateTeamMemberRoleAsync(UpdateRoleDto dto, string openId);
 
         /// <summary>
         /// 角色列表

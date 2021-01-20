@@ -28,7 +28,7 @@ namespace dy.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> PostExpenseInfoAsync(AddExpenseInfoDto input, string openId)
+        public async Task<string> PostExpenseInfoAsync(AddExpenseInfoDto input, string openId)
         {
             return await _expenseDal.PostExpenseInfoAsync(input, openId);
         }
@@ -41,19 +41,19 @@ namespace dy.Services
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">一页显示多少条</param>
         /// <returns></returns>
-        public async Task<PageResult<ExpenseInfo>> GetExpenseInfoByStatus(string teamId, short? Status, int pageIndex, int pageSize)
+        public async Task<PageResult<ExpenseInfo>> GetExpenseInfoByStatus(string teamId, short? Status, int pageIndex, int pageSize, string openId)
         {
-            return await _expenseDal.GetExpenseInfoByStatus(teamId, Status, pageIndex, pageSize);
+            return await _expenseDal.GetExpenseInfoByStatus(teamId, Status, pageIndex, pageSize, openId);
         }
 
         /// <summary>
         /// 审核
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<bool> AuditAsync(string Id)
+        public async Task<bool> AuditAsync(AuditDto dto, string openId)
         {
-            return await _expenseDal.AuditAsync(Id);
+            return await _expenseDal.AuditAsync(dto, openId);
         }
 
         /// <summary>
@@ -64,6 +64,16 @@ namespace dy.Services
         public async Task<bool> FinishedAsync(string Id)
         {
             return await _expenseDal.FinishedAsync(Id);
+        }
+
+        /// <summary>
+        /// 报销单详情
+        /// </summary>
+        /// <param name="ExpenseId">报销单Id</param>
+        /// <returns></returns>
+        public async Task<ExpenseInfoDetailDto> GetExpenseDetailByIdAsync(string ExpenseId)
+        {
+            return await _expenseDal.GetExpenseDetailByIdAsync(ExpenseId);
         }
     }
 }

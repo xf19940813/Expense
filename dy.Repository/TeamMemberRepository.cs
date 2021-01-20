@@ -39,9 +39,8 @@ namespace dy.Repository
                 MobilePhone = WxHelper.getPhoneNumber(dto.EncryptedData, dto.IV, sessionKey);
             }
 
-            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到UserId
+            var UserId = string.Empty;
             var isAny = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).Any();
-
             var result = 0;
             return await Task.Run(() =>
             {
@@ -58,11 +57,22 @@ namespace dy.Repository
                         db.Insertable(userInfo).ExecuteCommand();
                     }
 
-                    string CreatorId = db.Queryable<Team>().Where(t => t.ID == dto.TeamId && t.IsDeleted == false).First()?.CreateUserId;
+                    //获取邀请人的UserId
+                    bool isInviterToken = _redisCacheManager.Get(dto.InviterToken);
+                    string InviterUserId = string.Empty;
+                    if (isInviterToken)
+                    {
+                        //根据邀请人Token获取到邀请人OpenId
+                        var InviterOenId = _redisCacheManager.GetValue(dto.InviterToken).ToString().Split(";")[0].Trim('"');
+
+                        InviterUserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == InviterOenId).First()?.ID;
+                    }
+
+                    UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到加入人UserId
 
                     var roleId = db.Queryable<Role>().Where(a => a.TeamId == dto.TeamId && a.Name == AppConsts.RoleName.Ordinary).First()?.ID;
 
-                    var isMember = db.Queryable<TeamMember>().Where(a => a.TeamId == dto.TeamId && a.IsDeleted == false && a.CreateUserId == UserId).Any();
+                    var isMember = db.Queryable<TeamMember>().Where(a => a.TeamId == dto.TeamId && a.IsDeleted == false && a.JoinedUserId == UserId).Any();
 
                     if(isMember)
                     {
@@ -74,7 +84,8 @@ namespace dy.Repository
                         teamMember.ID = IdHelper.CreateGuid();
                         teamMember.TeamNickName = dto.NickName;
                         teamMember.IsDeleted = false;
-                        teamMember.CreateUserId = UserId;
+                        teamMember.InviterUserId = InviterUserId;
+                        teamMember.JoinedUserId = UserId;
                         teamMember.RoleId = roleId;
                         var result = db.Insertable(teamMember).ExecuteCommand();
                     }
@@ -90,7 +101,7 @@ namespace dy.Repository
                                 .Where(a => a.OpenId == openId).ExecuteCommand();
                     }
                     result = db.Updateable<TeamMember>().SetColumns(a => new TeamMember() { MobilePhone = MobilePhone })
-                                .Where(a => a.CreateUserId == UserId && a.TeamId == dto.TeamId).ExecuteCommand();
+                                .Where(a => a.JoinedUserId == UserId && a.TeamId == dto.TeamId).ExecuteCommand();
 
                     db.CommitTran();
                 }
@@ -122,16 +133,17 @@ namespace dy.Repository
                         ID = b.ID,
                         TeamNickName = b.TeamNickName,
                         Headimgurl = b.Headimgurl,
-                        CreateTime = b.CreateTime,
+                        JoinedTime = b.JoinedTime,
                         RoleName = c.Name
-                  }).OrderBy(a => a.CreateTime, OrderByType.Desc)
+                  })
+                .OrderBy("b.JoinedTime desc")
 
                 .ToPageList(pageIndex, pageSize);
 
                 pageResult.data = data;
                 pageResult.pageIndex = pageIndex;
                 pageResult.pageSize = pageSize;
-                pageResult.totalCount = entityDB.AsQueryable().Count();
+                pageResult.totalCount = entityDB.AsQueryable().Where(a => a.IsDeleted == false).Count();
 
                 return pageResult;
             });
@@ -159,6 +171,8 @@ namespace dy.Repository
         /// <returns></returns>
         public async Task<bool> UpdateTeamNickNameAsync(UpdateTeamNickNameDto dto)
         {
+            if (dto.MemberId == null) throw new Exception("成员Id为空！");
+            if (dto.TeamId == null) throw new Exception("团队Id为空！");
             return await Task.Run(() =>
             {
                 var i = db.Updateable<TeamMember>(a => a.TeamNickName == dto.TeamNickName).Where(a => a.ID == dto.MemberId && a.TeamId == dto.TeamId).ExecuteCommand();
@@ -179,7 +193,7 @@ namespace dy.Repository
 
             return await Task.Run(() =>
             {
-                var roleId = db.Queryable<TeamMember>().Where(a => a.TeamId == teamId && a.CreateUserId == UserId).First()?.RoleId;
+                var roleId = db.Queryable<TeamMember>().Where(a => a.TeamId == teamId && a.JoinedUserId == UserId).First()?.RoleId;
                 var roleName = db.Queryable<Role>().Where(a => a.ID == roleId).First()?.Name;
 
                 return roleName;
@@ -215,7 +229,7 @@ namespace dy.Repository
                     TeamNickName = a.TeamNickName,
                     Headimgurl = a.Headimgurl,
                     FreeQuota = a.FreeQuota
-                }).OrderBy("CreateTime desc")
+                }).OrderBy("JoinedTime desc")
                 .ToPageList(pageIndex, pageSize);
 
                 pageResult.data = data;
@@ -254,7 +268,7 @@ namespace dy.Repository
 
             return await Task.Run(() =>
             {
-                var query = db.Queryable<TeamMember>().Where(a => a.TeamId == teamId && a.CreateUserId == UserId)
+                var query = db.Queryable<TeamMember>().Where(a => a.TeamId == teamId && a.JoinedUserId == UserId)
                 .Select(a => new GetTeamNickNameDto
                 { 
                     MemberId = a.ID,

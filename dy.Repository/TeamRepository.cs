@@ -59,6 +59,12 @@ namespace dy.Repository
             {
                 db.BeginTran();//开启事务
 
+                var isTeam = db.Queryable<Team>()
+                .Where(a => a.IsDeleted == false && a.TeamName == input.TeamName.Trim()).Any();
+
+                if (isTeam)
+                    throw new Exception("该名称已被使用！");
+
                 if (query != null)
                 {
                     //添加团队
@@ -85,7 +91,7 @@ namespace dy.Repository
                     teamMember.MobilePhone = query.MobilePhone;
                     teamMember.TeamId = team.ID;
                     teamMember.RoleId = role.ID;
-                    teamMember.CreateUserId = query.UserId;
+                    teamMember.JoinedUserId = query.UserId;
                     teamMember.IsDeleted = false;
                     db.Insertable(teamMember).ExecuteCommand();
 
@@ -144,11 +150,13 @@ namespace dy.Repository
                      JoinType.Inner, a.ID == b.TeamId
                 ))
                 .Where((a, b)=> a.IsDeleted == false)
-                .Where((a, b) => b.CreateUserId == UserId)
+                .Where((a, b) => b.JoinedUserId == UserId)
+                .Where((a, b) => b.IsDeleted == false)
                 .Select(a => new QueryTeamDto
                 { 
                     ID = a.ID,
-                    TeamName = a.TeamName
+                    TeamName = a.TeamName,
+                    IsEnabled = a.IsEnabled
                 })
                 .OrderBy("a.CreateTime desc")
                 .ToPageList(pageIndex, pageSize);
@@ -194,8 +202,25 @@ namespace dy.Repository
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteByIdAsync(string Id)
+        public async Task<bool> DeleteByIdAsync(string Id, string openId)
         {
+            if (Id == null) throw new Exception("团队Id为空！");
+            if (openId == null) throw new Exception("用户唯一标识为空！");
+
+            var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID;
+
+            var Role = db.Queryable<TeamMember, Role>((a, b) => new JoinQueryInfos
+            (
+                JoinType.Inner, a.RoleId == b.ID
+            )).Where((a, b) => a.TeamId == Id && a.JoinedUserId == UserId)
+            .Select((a, b) => new
+            { 
+                RoleName = b.Name
+            }).First();
+
+            if (Role.RoleName != AppConsts.RoleName.Creator)
+                throw new Exception("您不是团队拥有者，无此权限！");
+
             return await Task.Run(() =>
             {
                 var i = db.Updateable<Team>(a => a.IsDeleted == true).Where(a => a.ID == Id).ExecuteCommand();
@@ -235,47 +260,68 @@ namespace dy.Repository
         {
             if(dto.TeamId == null) throw new Exception ("团队Id为空！");
             if (dto.MemberId == null) throw new Exception("成员Id为空!");
-
-            Role role = new Role();
-            int result = 0;
+            if (openId == null) throw new Exception("用户唯一标识为空！");
 
             var UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到UserId
+
+            var Role = db.Queryable<TeamMember, Role>((a, b) => new JoinQueryInfos
+            (
+                JoinType.Inner, a.RoleId == b.ID
+            )).Where((a, b) => a.TeamId == dto.TeamId && a.JoinedUserId == UserId)
+            .Select((a, b) => new
+            {
+                RoleName = b.Name
+            }).First();
+
+            if (Role.RoleName != AppConsts.RoleName.Creator)
+                throw new Exception("您不是团队拥有者，无此权限！");
+
+            Role role = new Role();
+            var result = 0;
 
             string CreatorRoleId = string.Empty; //创建者角色Id
             string AdminRoleId = string.Empty; //管理角色Id
             return await Task.Run(() =>
             {
-                try
+                db.BeginTran();
+
+                //找到转让人Id
+                var transId = db.Queryable<TeamMember>().Where(t => t.TeamId == dto.TeamId && t.JoinedUserId == UserId).First()?.ID;
+
+                AdminRoleId = db.Queryable<Role>().Where(r => r.TeamId == dto.TeamId && r.Name == AppConsts.RoleName.Admin).First()?.ID;
+
+                CreatorRoleId = db.Queryable<Role>().Where(r => r.TeamId == dto.TeamId && r.Name == AppConsts.RoleName.Creator).First()?.ID;
+
+                //团队转让前先把原有的创建者角色修改为管理员
+                db.Updateable<TeamMember>().SetColumns(a => new TeamMember()
                 {
-                    db.BeginTran();
+                    RoleId = AdminRoleId
+                })
+                .Where(t => t.ID == transId)
+                .ExecuteCommand();
 
-                    //找到转让人Id
-                    var transId = db.Queryable<TeamMember>().Where(t => t.TeamId == dto.TeamId && t.CreateUserId == UserId).First()?.ID;
-
-                    AdminRoleId = db.Queryable<Role>().Where(r => r.TeamId == dto.TeamId && r.Name == AppConsts.RoleName.Admin).First()?.ID;
-
-                    CreatorRoleId = db.Queryable<Role>().Where(r => r.TeamId == dto.TeamId && r.Name == AppConsts.RoleName.Creator).First()?.ID;
-
-                    //团队转让前先把原有的创建者角色修改为管理员
-                    db.Updateable<TeamMember>().SetColumns(a => new TeamMember() { RoleId = AdminRoleId })
-                        .Where(t => t.ID == transId);
-
-                    //更新团队创建者
-                    db.Updateable<Team>().SetColumns(a => new Team() { LastModifyUserId = UserId, LastModifyTime = DateTime.Now })
-                        .Where(a => a.ID == dto.TeamId);
-
-                    //更新成员角色、修改时间
-                    db.Updateable<TeamMember>().SetColumns(a => new TeamMember() { RoleId = CreatorRoleId, LastModifyTime = DateTime.Now })
-                        .Where(a => a.ID == dto.MemberId);
-
-                    db.CommitTran();
-                }
-                catch (Exception err)
+                //更新团队创建者
+                db.Updateable<Team>().SetColumns(a => new Team()
                 {
-                    db.RollbackTran();
-                }
+                    LastModifyUserId = UserId,
+                    LastModifyTime = DateTime.Now
+                })
+                .Where(a => a.ID == dto.TeamId)
+                .ExecuteCommand();
+
+                //更新成员角色、修改时间
+                result = db.Updateable<TeamMember>().SetColumns(a => new TeamMember()
+                {
+                    RoleId = CreatorRoleId,
+                    LastModifyTime = DateTime.Now
+                })
+                .Where(a => a.ID == dto.MemberId)
+                .ExecuteCommand();
+
+                db.CommitTran();
 
                 return result > 0;
+
             });
         }
 

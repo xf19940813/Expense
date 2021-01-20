@@ -58,9 +58,9 @@ namespace dy.Services
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteByIdAsync(string Id)
+        public async Task<bool> DeleteByIdAsync(string Id, string openId)
         {
-            return await _teameDal.DeleteByIdAsync(Id);
+            return await _teameDal.DeleteByIdAsync(Id, openId);
         }
 
         /// <summary>

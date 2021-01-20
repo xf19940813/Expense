@@ -39,7 +39,7 @@ namespace dy.IRepository
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        Task<bool> DeleteByIdAsync(string Id);
+        Task<bool> DeleteByIdAsync(string Id, string openId);
 
         /// <summary>
         /// 根据团队Id获取团队信息

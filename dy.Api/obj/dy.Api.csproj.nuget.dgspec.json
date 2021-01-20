@@ -228,6 +228,9 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+              "E:\\code\\dy\\dy.Common\\dy.Common.csproj": {
+                "projectPath": "E:\\code\\dy\\dy.Common\\dy.Common.csproj"
+              },
               "E:\\code\\dy\\dy.Model\\dy.Model.csproj": {
                 "projectPath": "E:\\code\\dy\\dy.Model\\dy.Model.csproj"
               }
@@ -253,6 +256,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -287,6 +293,9 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+              "E:\\code\\dy\\dy.Common\\dy.Common.csproj": {
+                "projectPath": "E:\\code\\dy\\dy.Common\\dy.Common.csproj"
+              },
               "E:\\code\\dy\\dy.Model\\dy.Model.csproj": {
                 "projectPath": "E:\\code\\dy\\dy.Model\\dy.Model.csproj"
               }
@@ -312,6 +321,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

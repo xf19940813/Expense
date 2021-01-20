@@ -646,11 +646,18 @@
             <param name="pageSize">一页显示多少条</param>
             <returns></returns>
         </member>
-        <member name="M:dy.Api.WeChat.ExpenseController.AuditAsync(System.String)">
+        <member name="M:dy.Api.WeChat.ExpenseController.GetExpenseDetailByIdAsync(System.String)">
+            <summary>
+            报销单详情
+            </summary>
+            <param name="ExpenseId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.ExpenseController.AuditAsync(dy.Model.Dto.AuditDto)">
             <summary>
             审核
             </summary>
-            <param name="Id">报销信息Id</param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:dy.Api.WeChat.ExpenseController.FinishedAsync(System.String)">
@@ -889,6 +896,31 @@
             <summary>
             查询用户是否存在
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:dy.Api.WeChat.WxPayController">
+            <summary>
+            微信支付
+            </summary>
+        </member>
+        <member name="M:dy.Api.WeChat.WxPayController.#ctor(dy.IServices.IWxPayServices,dy.Api.Log.ILoggerHelper)">
+            <summary>
+            微信支付
+            </summary>
+            <param name="payServices"></param>
+            <param name="loggerHelper"></param>
+        </member>
+        <member name="M:dy.Api.WeChat.WxPayController.PostPaymentToChange(dy.Model.Dto.WxPayDto)">
+            <summary>
+            付款到零钱-线上
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.WxPayController.PostOfflinePaymentAsync(dy.Model.Dto.OfflinePaymentDto)">
+            <summary>
+            线下付款
+            </summary>
+            <param name="dto"></param>
             <returns></returns>
         </member>
     </members>

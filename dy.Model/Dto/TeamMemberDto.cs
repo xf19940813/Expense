@@ -25,9 +25,9 @@ namespace dy.Model.Dto
         public string Headimgurl { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// 加入时间
         /// </summary>
-        public DateTime CreateTime { get; set; }
+        public DateTime? JoinedTime { get; set; }
 
         /// <summary>
         /// 角色名称
@@ -44,6 +44,11 @@ namespace dy.Model.Dto
         /// 团队Id
         /// </summary>
         public string TeamId { get; set; }
+        
+        /// <summary>
+        /// 邀请人的Token，根据邀请人Token获取邀请人的UserId
+        /// </summary>
+        public string InviterToken { get; set; }
 
     }
 

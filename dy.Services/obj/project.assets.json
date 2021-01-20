@@ -2199,6 +2199,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "dy.Common": "1.0.0",
           "dy.Model": "1.0.0"
         },
         "compile": {
@@ -2206,12 +2207,16 @@
         },
         "runtime": {
           "bin/placeholder/dy.IRepository.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "dy.IServices/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "dy.Common": "1.0.0",
           "dy.Model": "1.0.0"
         },
         "compile": {
@@ -2219,7 +2224,10 @@
         },
         "runtime": {
           "bin/placeholder/dy.IServices.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "dy.Model/1.0.0": {
         "type": "project",

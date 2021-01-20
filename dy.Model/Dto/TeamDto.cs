@@ -47,6 +47,11 @@ namespace dy.Model.Dto
         /// </summary>
         public string TeamName { get; set; }
 
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool IsEnabled { get; set; }
+
     }
 
     /// <summary>
