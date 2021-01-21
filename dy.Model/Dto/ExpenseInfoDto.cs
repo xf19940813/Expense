@@ -37,6 +37,11 @@ namespace dy.Model.Dto
         /// 备注
         /// </summary>
         public string Remarks { get; set; }
+
+        /// <summary>
+        /// 图片名称, 示例a.jpg,b.jpg,e.jpg
+        /// </summary>
+        public string ImgNames { get; set; }
     }
 
     /// <summary>
@@ -100,7 +105,7 @@ namespace dy.Model.Dto
     public class AuditDto
     {
         /// <summary>
-        /// 
+        /// 报销单Id
         /// </summary>
         public string Id { get; set; }
     }

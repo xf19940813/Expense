@@ -25,7 +25,7 @@ namespace dy.Model.Dto
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// 付款方式
+        /// 付款方式 3为线下付款
         /// </summary>
         public short? PaymentType { get; set; }  
 

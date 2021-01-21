@@ -92,8 +92,14 @@ namespace dy.Api.WeChat
         {
             try
             {
-                var data = await _expenseServices.GetExpenseDetailByIdAsync(ExpenseId);
-                return Ok(data);
+                var expenseInfo = await _expenseServices.GetExpenseDetailByIdAsync(ExpenseId);
+                var sheet = await _expenseServices.GetSheetByExpenseId(ExpenseId);
+
+                return Ok(new 
+                {
+                    expense = expenseInfo,
+                    imgList = sheet
+                });
 
             }
             catch (Exception err)
@@ -107,7 +113,7 @@ namespace dy.Api.WeChat
         /// <summary>
         /// 审核
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
         [Authorize]
         [HttpPut("AuditAsync")]

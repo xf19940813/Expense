@@ -41,5 +41,15 @@ namespace dy.Services
         {
             return await _wxpayDal.PostOfflinePaymentAsync(dto, OperatorOpenId);
         }
+
+        /// <summary>
+        /// 新增附件
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task<bool> PostSheetAsync(AddSheetDto dto)
+        {
+            return await _wxpayDal.PostSheetAsync(dto);
+        }
     }
 }

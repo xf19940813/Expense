@@ -657,7 +657,7 @@
             <summary>
             审核
             </summary>
-            <param name="value"></param>
+            <param name="dto"></param>
             <returns></returns>
         </member>
         <member name="M:dy.Api.WeChat.ExpenseController.FinishedAsync(System.String)">
@@ -919,6 +919,13 @@
         <member name="M:dy.Api.WeChat.WxPayController.PostOfflinePaymentAsync(dy.Model.Dto.OfflinePaymentDto)">
             <summary>
             线下付款
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.WxPayController.PostSheetAsync(dy.Model.Dto.AddSheetDto)">
+            <summary>
+            新增附件
             </summary>
             <param name="dto"></param>
             <returns></returns>

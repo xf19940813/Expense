@@ -191,5 +191,35 @@ namespace dy.Repository
                 return result > 0;
             });
         }
+
+        /// <summary>
+        /// 新增附件
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task<bool> PostSheetAsync(AddSheetDto dto)
+        {
+            Sheet sheet = iMapper.Map<Sheet>(dto); // 附件
+
+            List<Sheet> sheets = new List<Sheet>();
+
+            string[] imgArray = dto.ImgNames.Split(','); //字符串转数组
+            foreach (var img in imgArray)
+            {
+                sheet.ID = IdHelper.CreateGuid();
+                sheet.ImgUrl = ImgConfig.img_url + img;
+                sheet.IsDeleted = false;
+                sheets.Add(sheet);
+            }
+
+            var result = 0;
+            return await Task.Run(() =>
+            {
+                result = db.Insertable(sheets).ExecuteCommand();
+
+                return result > 0;
+            });
+
+        }
     }
 }

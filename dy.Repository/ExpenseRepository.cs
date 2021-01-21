@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using dy.Common.Config;
 using dy.Common.Helper;
 using dy.Common.Redis;
 using dy.IRepository;
@@ -48,14 +49,30 @@ namespace dy.Repository
             expense.CreateUserId = UserId;
             expense.IsDeleted = false;
 
+            Sheet sheet = new Sheet(); // 附件
+            List<Sheet> sheets = new List<Sheet>();
+
+            string[] imgArray = input.ImgNames.Split(','); //字符串转数组
+            foreach (var img in imgArray)
+            {
+                sheet.ID = IdHelper.CreateGuid();
+                sheet.ExpenseId = expense.ID;
+                sheet.TeamId = expense.TeamId;
+                sheet.ImgUrl = ImgConfig.img_url + img;
+                sheet.IsDeleted = false;
+                sheets.Add(sheet);
+            }
+
             if (input.Amount > FreeQuota)
                 expense.AuditStatus = AppConsts.AuditStatus.UnAudited;
             else
                 expense.AuditStatus = AppConsts.AuditStatus.Audited;
 
+            var result = 0;
             return await Task.Run(() =>
             {
-                var result = db.Insertable(expense).ExecuteCommand();
+                db.Insertable(expense).ExecuteCommand();
+                result = db.Insertable(sheets).ExecuteCommand();
 
                 if (result <= 0) throw new Exception("添加失败");
 
@@ -191,6 +208,28 @@ namespace dy.Repository
 
                 return result;
             });
+        }
+
+        /// <summary>
+        /// 根据报销单ID获取附件信息
+        /// </summary>
+        /// <param name="ExpenseId"></param>
+        /// <returns></returns>
+        public async Task<List<QuerySheetDto>> GetSheetByExpenseId(string ExpenseId)
+        {
+            return await Task.Run(() =>
+            {
+                var query = db.Queryable<Sheet>()
+                .Where(a => a.IsDeleted == false && a.ExpenseId == ExpenseId)
+                .Select(a => new QuerySheetDto
+                { 
+                    ID = a.ID,
+                    ImgUrl = a.ImgUrl
+                });
+
+                return query.ToList();
+            });
+            
         }
     }
 }

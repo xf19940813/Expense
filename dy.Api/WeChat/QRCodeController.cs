@@ -111,7 +111,6 @@ namespace dy.Api.WeChat
                 result.Path = "";
                 result.BasePath = "";
                 result.ImgPath = imgpath;
-                return result;
             }
 
             return result;

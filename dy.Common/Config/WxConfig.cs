@@ -25,5 +25,6 @@ namespace dy.Common.Config
         //public static string Access_token { get; set; } = "client_credential";
 
         public static string grant_type { get; set; } = "client_credential";
+
     }
 }

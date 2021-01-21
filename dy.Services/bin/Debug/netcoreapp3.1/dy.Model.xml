@@ -139,6 +139,11 @@
             备注
             </summary>
         </member>
+        <member name="P:dy.Model.Dto.AddExpenseInfoDto.ImgNames">
+            <summary>
+            图片名称, 示例a.jpg,b.jpg,e.jpg
+            </summary>
+        </member>
         <member name="T:dy.Model.Dto.ExpenseInfoDetailDto">
             <summary>
             报销单详情
@@ -201,7 +206,7 @@
         </member>
         <member name="P:dy.Model.Dto.AuditDto.Id">
             <summary>
-            
+            报销单Id
             </summary>
         </member>
         <member name="T:dy.Model.Dto.OfflinePaymentDto">
@@ -226,7 +231,7 @@
         </member>
         <member name="P:dy.Model.Dto.OfflinePaymentDto.PaymentType">
             <summary>
-            付款方式
+            付款方式 3为线下付款
             </summary>
         </member>
         <member name="T:dy.Model.Dto.AddRoleDto">
@@ -277,6 +282,41 @@
         <member name="P:dy.Model.Dto.QueryRoleDto.RoleName">
             <summary>
             角色名称
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.AddSheetDto">
+            <summary>
+            新增附件
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddSheetDto.ExpenseId">
+            <summary>
+            报销单Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddSheetDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.AddSheetDto.ImgNames">
+            <summary>
+            图片名称, 示例a.jpg,b.jpg,e.jpg
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.QuerySheetDto">
+            <summary>
+            查询附件
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QuerySheetDto.ID">
+            <summary>
+            附件ID
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.QuerySheetDto.ImgUrl">
+            <summary>
+            图片地址
             </summary>
         </member>
         <member name="T:dy.Model.Dto.AddTeamDto">
@@ -586,7 +626,7 @@
         </member>
         <member name="P:dy.Model.Dto.WxPayDto.PaymentType">
             <summary>
-            付款方式
+            付款方式 1为立即支付，2为财务审核通过之后再支付的
             </summary>
         </member>
         <member name="T:dy.Model.Enum.Gender">
@@ -765,6 +805,41 @@
             </summary>
         </member>
         <member name="P:dy.Model.Expense.PaymentRecord.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="T:dy.Model.Expense.Sheet">
+            <summary>
+            附件实体
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Sheet.ID">
+            <summary>
+            主键ID
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Sheet.ExpenseId">
+            <summary>
+            报销单Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Sheet.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Sheet.ImgUrl">
+            <summary>
+            图片地址
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Sheet.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.Sheet.IsDeleted">
             <summary>
             是否删除
             </summary>

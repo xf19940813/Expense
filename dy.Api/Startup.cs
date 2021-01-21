@@ -134,7 +134,7 @@ namespace dy.Api
 
             app.UseAuthorization();
 
-
+            app.UseFileServer();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -75,5 +75,15 @@ namespace dy.Services
         {
             return await _expenseDal.GetExpenseDetailByIdAsync(ExpenseId);
         }
+
+        /// <summary>
+        /// 根据报销单ID获取附件信息
+        /// </summary>
+        /// <param name="ExpenseId"></param>
+        /// <returns></returns>
+        public async Task<List<QuerySheetDto>> GetSheetByExpenseId(string ExpenseId)
+        {
+            return await _expenseDal.GetSheetByExpenseId(ExpenseId);
+        }
     }
 }

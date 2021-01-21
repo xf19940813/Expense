@@ -25,7 +25,7 @@ namespace dy.Model.Dto
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// 付款方式
+        /// 付款方式 1为立即支付，2为财务审核通过之后再支付的
         /// </summary>
         public short PaymentType { get; set; } = AppConsts.PaymentType.Promptly;
 

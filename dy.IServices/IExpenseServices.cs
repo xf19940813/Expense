@@ -47,5 +47,12 @@ namespace dy.IServices
         /// <param name="ExpenseId">报销单Id</param>
         /// <returns></returns>
         Task<ExpenseInfoDetailDto> GetExpenseDetailByIdAsync(string ExpenseId);
+
+        /// <summary>
+        /// 根据报销单ID获取附件信息
+        /// </summary>
+        /// <param name="ExpenseId"></param>
+        /// <returns></returns>
+        Task<List<QuerySheetDto>> GetSheetByExpenseId(string ExpenseId);
     }
 }

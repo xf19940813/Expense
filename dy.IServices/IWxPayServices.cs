@@ -25,5 +25,12 @@ namespace dy.IServices
         /// <param name="OperatorOpenId"></param>
         /// <returns></returns>
         Task<bool> PostOfflinePaymentAsync(OfflinePaymentDto dto, string OperatorOpenId);
+
+        /// <summary>
+        /// 新增附件
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        Task<bool> PostSheetAsync(AddSheetDto dto);
     }
 }

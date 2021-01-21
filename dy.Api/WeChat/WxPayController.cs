@@ -86,5 +86,27 @@ namespace dy.Api.WeChat
                 return FailedMsg("线下付款失败！ " + err.Message);
             }
         }
+
+        /// <summary>
+        /// 新增附件
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [Authorize]
+        [HttpPost("PostSheetAsync")]
+        public async Task<IActionResult> PostSheetAsync([FromBody]AddSheetDto dto)
+        {
+            try
+            {
+                var data = await _payServices.PostSheetAsync(dto);
+                return AddSuccessMsg();
+            }
+            catch (Exception err)
+            {
+                _logger.Error(typeof(WxPayController), "添加失败！", new Exception(err.Message));
+                return FailedMsg("添加失败！ " + err.Message);
+            }
+        }
     }
 }

@@ -1,0 +1,6 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/dy/dy.Api/bin/Debug/netcoreapp3.1/dy.Services.xml
+/dy/dy.Api/bin/Debug/netcoreapp3.1/dy.Repository.xml
