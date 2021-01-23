@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using dy.Api.Controllers;
 using dy.Api.Log;
+using dy.Common.Config;
 using dy.Common.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -66,11 +67,11 @@ namespace dy.Api.WeChat
         public FileStatusCode UploadFile([FromForm]IFormCollection collection)
         {
             FileStatusCode result = new FileStatusCode();
-            //int retvalue = 0;
             var imgpath = collection["imgpath"].ToString();
             var files = collection.Files;
             var fname = "";
             var path = "";
+            string newFileName = string.Empty;
             try
             {
                 foreach (var file in files)
@@ -86,8 +87,14 @@ namespace dy.Api.WeChat
                     }
 
                     fname = file.FileName;
+                    string type = fname.Substring(fname.LastIndexOf(".") + 1);
+                    if (fname != "")
+                    {
+                        newFileName = Guid.NewGuid().ToString().Replace("-", "") + "." + type;
+                    }
 
-                    path = Path.Combine(basepath, imgpath + fname);
+
+                    path = Path.Combine(basepath, imgpath + newFileName);
 
                     
                     using (FileStream fs = new FileStream(path, FileMode.Create))
@@ -98,19 +105,13 @@ namespace dy.Api.WeChat
                 }
 
                 result.Status = "200";
-                result.Path = path;
-                result.BasePath = basepath;
                 result.Message = $"图片 {fname} 上传成功";
-                result.ImgPath = imgpath;
-                result.FileName = fname;
+                result.ImgUrl = ImgConfig.img_url + newFileName;
             }
             catch (Exception ex)
             {
                 result.Status = "400";
                 result.Message = ex.Message;
-                result.Path = "";
-                result.BasePath = "";
-                result.ImgPath = imgpath;
             }
 
             return result;

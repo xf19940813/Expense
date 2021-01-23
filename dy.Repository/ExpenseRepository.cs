@@ -49,20 +49,6 @@ namespace dy.Repository
             expense.CreateUserId = UserId;
             expense.IsDeleted = false;
 
-            Sheet sheet = new Sheet(); // 附件
-            List<Sheet> sheets = new List<Sheet>();
-
-            string[] imgArray = input.ImgNames.Split(','); //字符串转数组
-            foreach (var img in imgArray)
-            {
-                sheet.ID = IdHelper.CreateGuid();
-                sheet.ExpenseId = expense.ID;
-                sheet.TeamId = expense.TeamId;
-                sheet.ImgUrl = ImgConfig.img_url + img;
-                sheet.IsDeleted = false;
-                sheets.Add(sheet);
-            }
-
             if (input.Amount > FreeQuota)
                 expense.AuditStatus = AppConsts.AuditStatus.UnAudited;
             else
@@ -71,9 +57,24 @@ namespace dy.Repository
             var result = 0;
             return await Task.Run(() =>
             {
-                db.Insertable(expense).ExecuteCommand();
-                result = db.Insertable(sheets).ExecuteCommand();
+                Sheet sheet = new Sheet(); // 附件
 
+                if (!string.IsNullOrEmpty(input.ImgNames))
+                {
+                    string[] imgArray = input.ImgNames.Split(','); //字符串转数组
+                    foreach (var img in imgArray)
+                    {
+                        sheet.ID = IdHelper.CreateGuid();
+                        sheet.ExpenseId = expense.ID;
+                        sheet.TeamId = expense.TeamId;
+                        sheet.ImgUrl = ImgConfig.img_url + img;
+                        sheet.IsDeleted = false;
+                        db.Insertable(sheet).ExecuteCommand();
+                    }
+                }
+
+                result = db.Insertable(expense).ExecuteCommand();
+                
                 if (result <= 0) throw new Exception("添加失败");
 
                 return expense.ID;

@@ -20,22 +20,7 @@ namespace dy.Common.Helper
         /// <summary>
         /// 返回图片路径
         /// </summary>
-        public string Path { get; set; }
-
-        /// <summary>
-        /// 返回文件夹路径
-        /// </summary>
-        public string BasePath { get; set; }
-
-        /// <summary>
-        /// 返回图片路径
-        /// </summary>
-        public string ImgPath { get; set; }
-
-        /// <summary>
-        /// 返回文件名
-        /// </summary>
-        public string FileName { get; set; }
+        public string ImgUrl { get; set; }
 
     }
 }
