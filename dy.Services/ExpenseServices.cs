@@ -85,5 +85,15 @@ namespace dy.Services
         {
             return await _expenseDal.GetSheetByExpenseId(ExpenseId);
         }
+
+        /// <summary>
+        /// 驳回
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task<bool> RejectAsync(RejectDto dto, string openId)
+        {
+            return await _expenseDal.RejectAsync(dto, openId);
+        }
     }
 }

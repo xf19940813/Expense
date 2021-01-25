@@ -16,6 +16,12 @@ namespace dy.Model
         public class AuditStatus
         {
             /// <summary>
+            /// 驳回
+            /// </summary>
+            [Description("驳回")]
+            public const int Reject = -1;
+
+            /// <summary>
             /// 未审核
             /// </summary>
             [Description("未审核")]

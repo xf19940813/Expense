@@ -76,5 +76,21 @@ namespace dy.Api.Controllers
             }
            
         }
+
+        /// <summary>
+        /// 解析Token
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ParseToken")]
+        [Authorize]
+        public IActionResult ParseToken()
+        {
+            //需要截取Bearer
+            var tokenHeader = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            var user = JwtHelper.SerializeJwt(tokenHeader);
+
+            return Ok(user);
+        }
+
     }
 }

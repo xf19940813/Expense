@@ -44,6 +44,11 @@ namespace dy.Model.Dto
         /// 
         /// </summary>
         public string EncryptedData { get; set; }
+
+        /// <summary>
+        /// 团队Id
+        /// </summary>
+        public string TeamId { get; set; }
     }
 
     /// <summary>

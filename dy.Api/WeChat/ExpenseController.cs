@@ -137,6 +137,7 @@ namespace dy.Api.WeChat
         /// </summary>
         /// <param name="Id">报销信息Id</param>
         /// <returns></returns>
+        [ApiExplorerSettings(IgnoreApi = true)]
         [Authorize]
         [HttpPut("FinishedAsync")]
         public async Task<IActionResult> FinishedAsync([FromBody]string Id)
@@ -150,6 +151,28 @@ namespace dy.Api.WeChat
             {
                 _logger.Error(typeof(ExpenseController), "报销失败", new Exception(err.Message));
                 return FailedMsg(err.Message);
+            }
+        }
+
+        /// <summary>
+        /// 驳回
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPut("RejectAsync")]
+        public async Task<IActionResult> RejectAsync([FromBody]RejectDto dto)
+        {
+            string openId = GetOpenId();
+            try
+            {
+                var data = await _expenseServices.RejectAsync(dto, openId);
+                return AuditSuccessMsg();
+            }
+            catch (Exception err)
+            {
+                _logger.Error(typeof(ExpenseController), "驳回失败!", new Exception(err.Message));
+                return FailedMsg("驳回失败！" + err.Message);
             }
         }
     }

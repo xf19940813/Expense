@@ -97,6 +97,16 @@ namespace dy.Model.Dto
         /// 备注
         /// </summary>
         public string Remarks { get; set; }
+
+        /// <summary>
+        /// 是否驳回
+        /// </summary>
+        public bool IsReject { get; set; }
+
+        /// <summary>
+        /// 驳回原因
+        /// </summary>
+        public string RejectReason { get; set; }
     }
 
     /// <summary>
@@ -108,5 +118,16 @@ namespace dy.Model.Dto
         /// 报销单Id
         /// </summary>
         public string Id { get; set; }
+    }
+
+    /// <summary>
+    /// 驳回
+    /// </summary>
+    public class RejectDto : AuditDto
+    {
+        /// <summary>
+        /// 驳回原因
+        /// </summary>
+        public string RejectReason { get; set; }
     }
 }

@@ -74,6 +74,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:dy.Api.Controllers.AuthController.ParseToken">
+            <summary>
+            解析Token
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:dy.Api.Controllers.BaseController">
             <summary>
             自定义路由模版
@@ -665,6 +671,13 @@
             报销完结
             </summary>
             <param name="Id">报销信息Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:dy.Api.WeChat.ExpenseController.RejectAsync(dy.Model.Dto.RejectDto)">
+            <summary>
+            驳回
+            </summary>
+            <param name="dto"></param>
             <returns></returns>
         </member>
         <member name="T:dy.Api.WeChat.QRCodeController">

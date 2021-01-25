@@ -74,6 +74,21 @@ namespace dy.Model.Expense
         public DateTime? AuditTime { get; set; }
 
         /// <summary>
+        /// 驳回人
+        /// </summary>
+        public string RejectUserId { get; set; }
+
+        /// <summary>
+        /// 驳回原因
+        /// </summary>
+        public string RejectReason { get; set; }
+
+        /// <summary>
+        /// 驳回时间
+        /// </summary>
+        public DateTime? RejectTime { get; set; }
+
+        /// <summary>
         /// 是否删除
         /// </summary>
         public bool IsDeleted { get; set; }

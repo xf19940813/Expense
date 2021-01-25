@@ -4,6 +4,7 @@ using dy.Common.Helper;
 using dy.Common.Redis;
 using dy.IRepository;
 using dy.Model.Dto;
+using dy.Model.Expense;
 using dy.Model.User;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
@@ -61,6 +62,19 @@ namespace dy.Repository
 
                     result = db.Updateable<Wx_UserInfo>().SetColumns(a => new Wx_UserInfo() { MobilePhone = user.MobilePhone, FollowDate = DateTime.Now })
                                 .Where(a => a.OpenId == openId).ExecuteCommand();
+
+                    if(result > 0)
+                    {
+                        if(input.TeamId != null)
+                        {
+                            var userId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID;
+
+                            db.Updateable<TeamMember>().SetColumns(a => new TeamMember()
+                            {
+                                MobilePhone = user.MobilePhone
+                            }).Where(a => a.TeamId == input.TeamId && a.JoinedUserId == userId && a.IsDeleted == false).ExecuteCommand();
+                        }
+                    }
                 }
                 return result > 0;
             });

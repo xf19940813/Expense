@@ -55,5 +55,12 @@ namespace dy.IRepository
         /// <returns></returns>
         Task<List<QuerySheetDto>> GetSheetByExpenseId(string ExpenseId);
 
+        /// <summary>
+        /// 驳回
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        Task<bool> RejectAsync(RejectDto dto, string openId);
+
     }
 }

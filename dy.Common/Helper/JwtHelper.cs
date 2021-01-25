@@ -70,7 +70,7 @@ namespace dy.Common.Helper
         /// </summary>
         /// <param name = "jwtStr" ></ param >
         /// < returns ></ returns >
-        public static TokenInfo SerializeJwt(string jwtStr)
+        public static TokenModel SerializeJwt(string jwtStr)
         {
             var jwtHandler = new JwtSecurityTokenHandler();
 
@@ -85,10 +85,9 @@ namespace dy.Common.Helper
             //    Console.WriteLine(e);
             //    throw;
             //}
-            var tm = new TokenInfo
+            var tm = new TokenModel
             {
-                OpenId = jwtToken.Id.ToString().Split(";")[0],
-                SessionKey = jwtToken.Id.ToString().Split(";")[1]
+                OpenId = jwtToken.Id.ToString().Split(";")[0]
             };
             return tm;
         }

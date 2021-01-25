@@ -31,80 +31,66 @@ namespace dy.Repository
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string openId, string sessionKey)
-        {;
-            string MobilePhone = string.Empty;
-            if (dto.IV != "" && dto.EncryptedData != "")
-            {
-                MobilePhone = WxHelper.getPhoneNumber(dto.EncryptedData, dto.IV, sessionKey);
-            }
+        public async Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string openId)
+        {
 
-            var UserId = string.Empty;
             var isAny = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).Any();
             var result = 0;
             return await Task.Run(() =>
             {
-                if(MobilePhone == null || MobilePhone == "")
+                if (isAny == false)
                 {
-                    db.BeginTran();//开启事务
+                    Wx_UserInfo userInfo = iMapper.Map<Wx_UserInfo>(dto);
+                    userInfo.ID = IdHelper.CreateGuid();
+                    userInfo.OpenId = openId;
+                    db.Insertable(userInfo).ExecuteCommand();
+                }
 
-                    if(isAny == false)
-                    {
-                        Wx_UserInfo userInfo = iMapper.Map<Wx_UserInfo>(dto);
-                        userInfo.ID = IdHelper.CreateGuid();
-                        userInfo.OpenId = openId;
-                        userInfo.MobilePhone = MobilePhone;
-                        db.Insertable(userInfo).ExecuteCommand();
-                    }
+                //获取邀请人的UserId
+                bool isInviterToken = _redisCacheManager.Get(dto.InviterToken);
+                string InviterUserId = string.Empty;
+                if (isInviterToken)
+                {
+                    //根据邀请人Token获取到邀请人OpenId
+                    var InviterOenId = _redisCacheManager.GetValue(dto.InviterToken).ToString().Split(";")[0].Trim('"');
 
-                    //获取邀请人的UserId
-                    bool isInviterToken = _redisCacheManager.Get(dto.InviterToken);
-                    string InviterUserId = string.Empty;
-                    if (isInviterToken)
-                    {
-                        //根据邀请人Token获取到邀请人OpenId
-                        var InviterOenId = _redisCacheManager.GetValue(dto.InviterToken).ToString().Split(";")[0].Trim('"');
+                    InviterUserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == InviterOenId).First()?.ID;
+                }
 
-                        InviterUserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == InviterOenId).First()?.ID;
-                    }
+                var UserInfo = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).Select(a => new
+                {
+                    UserId = a.ID,
+                    MobilePhone = a.MobilePhone
 
-                    UserId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID; //找到加入人UserId
+                }).First(); //找到加入人UserId、MobilePhone
 
-                    var roleId = db.Queryable<Role>().Where(a => a.TeamId == dto.TeamId && a.Name == AppConsts.RoleName.Ordinary).First()?.ID;
+                var roleId = db.Queryable<Role>().Where(a => a.TeamId == dto.TeamId && a.Name == AppConsts.RoleName.Ordinary).First()?.ID;
 
-                    var isMember = db.Queryable<TeamMember>().Where(a => a.TeamId == dto.TeamId && a.IsDeleted == false && a.JoinedUserId == UserId).Any();
+                var isMember = db.Queryable<TeamMember>().Where(a => a.TeamId == dto.TeamId && a.IsDeleted == false && a.JoinedUserId == UserInfo.UserId).Any();
 
-                    if(isMember)
-                    {
-                       throw new Exception("成员已经加了团队，不能再次加入！");   
-                    }
-                    else
-                    {
-                        TeamMember teamMember = iMapper.Map<TeamMember>(dto);
-                        teamMember.ID = IdHelper.CreateGuid();
-                        teamMember.TeamNickName = dto.NickName;
-                        teamMember.IsDeleted = false;
-                        teamMember.InviterUserId = InviterUserId;
-                        teamMember.JoinedUserId = UserId;
-                        teamMember.RoleId = roleId;
-                        var result = db.Insertable(teamMember).ExecuteCommand();
-                    }
-                    db.CommitTran();
+                if (isMember)
+                {
+                    throw new Exception("成员已经加了团队，不能再次加入！");
                 }
                 else
                 {
-                    db.BeginTran();//开启事务
+                    TeamMember teamMember = iMapper.Map<TeamMember>(dto);
+                    teamMember.ID = IdHelper.CreateGuid();
+                    teamMember.TeamNickName = dto.NickName;
+                    teamMember.IsDeleted = false;
+                    teamMember.InviterUserId = InviterUserId;
+                    teamMember.JoinedUserId = UserInfo.UserId;
+                    teamMember.RoleId = roleId;
+                    result = db.Insertable(teamMember).ExecuteCommand();
 
-                    if (isAny == true)
+                    if(result > 0 && UserInfo.MobilePhone != null)
                     {
-                        db.Updateable<Wx_UserInfo>().SetColumns(a => new Wx_UserInfo() { MobilePhone = MobilePhone, FollowDate = DateTime.Now })
-                                .Where(a => a.OpenId == openId).ExecuteCommand();
+                        db.Updateable<TeamMember>().SetColumns(a => new TeamMember() { MobilePhone = UserInfo.MobilePhone })
+                            .Where(a => a.ID == teamMember.ID).ExecuteCommand();
                     }
-                    result = db.Updateable<TeamMember>().SetColumns(a => new TeamMember() { MobilePhone = MobilePhone })
-                                .Where(a => a.JoinedUserId == UserId && a.TeamId == dto.TeamId).ExecuteCommand();
-
-                    db.CommitTran();
+                    
                 }
+
                 return result > 0;
             });
         }

@@ -15,7 +15,7 @@ namespace dy.IRepository
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string openId, string sessionKey);
+        Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string openId);
 
         /// <summary>
         /// 分页获取成员数据

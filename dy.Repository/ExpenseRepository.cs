@@ -100,6 +100,7 @@ namespace dy.Repository
             (
                 JoinType.Inner, t.RoleId == r.ID && t.TeamId == r.TeamId
             ))
+            .Where((t,r) => t.TeamId == teamId)
             .Where((t, r) => t.JoinedUserId == UserId)
             .Select((t, r) => new QueryRoleDto
             {
@@ -116,10 +117,10 @@ namespace dy.Repository
                     JoinType.Inner, a.TeamId == b.TeamId && a.CreateUserId == b.JoinedUserId
                 ))
                 .WhereIF(Status>=0, (a, b) => a.AuditStatus == Status)
-                .WhereIF(Role.RoleName == AppConsts.RoleName.Ordinary, (a, b) => b.RoleId == Role.RoleId)
+                .WhereIF(Role.RoleName.Trim() == AppConsts.RoleName.Ordinary, (a, b) => a.CreateUserId == UserId)
                 .Where((a, b) => a.TeamId == teamId)
                 .Where((a, b) => b.IsDeleted == false)
-                .OrderBy("a.CreateTime desc")
+                .OrderBy((a, b) => a.CreateTime, OrderByType.Desc)
                 .ToPageList(pageIndex, pageSize);
                 pageResult.totalCount = entityDB.AsQueryable().Where(a => a.IsDeleted == false).Count();
                 pageResult.pageIndex = pageIndex;
@@ -197,7 +198,8 @@ namespace dy.Repository
                     ConsumeTime = a.ConsumeTime,
                     ApplyTime = a.CreateTime,
                     AuditTime = a.AuditTime,
-                    Remarks = a.Remarks
+                    Remarks = a.Remarks,
+                    RejectReason = a.RejectReason
 
                 }).First();
 
@@ -231,6 +233,31 @@ namespace dy.Repository
                 return query.ToList();
             });
             
+        }
+
+
+        /// <summary>
+        /// 驳回
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task<bool> RejectAsync(RejectDto dto, string openId)
+        {
+            var Status = db.Queryable<ExpenseInfo>().Where(a => a.ID == dto.Id).First()?.AuditStatus;
+
+            if (Status != AppConsts.AuditStatus.UnAudited)
+                throw new Exception("报销单未审核的情况下才可以驳回！");
+
+            return await Task.Run(() =>
+            {
+                var userId = db.Queryable<Wx_UserInfo>().Where(a => a.OpenId == openId).First()?.ID;
+
+                var result = db.Updateable<ExpenseInfo>()
+                .SetColumns(a => new ExpenseInfo() { AuditStatus = AppConsts.AuditStatus.Reject, RejectUserId = userId, RejectReason = dto.RejectReason, RejectTime = DateTime.Now })
+                .Where(a => a.ID == dto.Id).ExecuteCommand();
+
+                return result > 0;
+            });
         }
     }
 }

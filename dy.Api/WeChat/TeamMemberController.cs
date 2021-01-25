@@ -46,10 +46,9 @@ namespace dy.Api.WeChat
         {
             var tokenInfo = GetTokenInfo();
             var openId = tokenInfo.OpenId;
-            var sessionKey = tokenInfo.SessionKey;
             try
             {
-                var data = await _memberServices.PostTeamMemberAsync(dto, openId, sessionKey);
+                var data = await _memberServices.PostTeamMemberAsync(dto, openId);
                 return AddSuccessMsg();
             }
             catch (Exception err)

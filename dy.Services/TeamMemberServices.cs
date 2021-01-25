@@ -25,9 +25,9 @@ namespace dy.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string openId, string sessionKey)
+        public async Task<bool> PostTeamMemberAsync(AddTeamMemberDto dto, string openId)
         {
-            return await _memberRepository.PostTeamMemberAsync(dto, openId, sessionKey);
+            return await _memberRepository.PostTeamMemberAsync(dto, openId);
         }
 
 

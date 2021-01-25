@@ -14,6 +14,11 @@
             审核状态
             </summary>
         </member>
+        <member name="F:dy.Model.AppConsts.AuditStatus.Reject">
+            <summary>
+            驳回
+            </summary>
+        </member>
         <member name="F:dy.Model.AppConsts.AuditStatus.UnAudited">
             <summary>
             未审核
@@ -199,6 +204,16 @@
             备注
             </summary>
         </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.IsReject">
+            <summary>
+            是否驳回
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.ExpenseInfoDetailDto.RejectReason">
+            <summary>
+            驳回原因
+            </summary>
+        </member>
         <member name="T:dy.Model.Dto.AuditDto">
             <summary>
             
@@ -207,6 +222,16 @@
         <member name="P:dy.Model.Dto.AuditDto.Id">
             <summary>
             报销单Id
+            </summary>
+        </member>
+        <member name="T:dy.Model.Dto.RejectDto">
+            <summary>
+            驳回
+            </summary>
+        </member>
+        <member name="P:dy.Model.Dto.RejectDto.RejectReason">
+            <summary>
+            驳回原因
             </summary>
         </member>
         <member name="T:dy.Model.Dto.OfflinePaymentDto">
@@ -569,6 +594,11 @@
             
             </summary>
         </member>
+        <member name="P:dy.Model.Dto.AddUserInfoDto.TeamId">
+            <summary>
+            团队Id
+            </summary>
+        </member>
         <member name="T:dy.Model.Dto.QueryUserInfoDto">
             <summary>
             查询用户信息
@@ -727,6 +757,21 @@
         <member name="P:dy.Model.Expense.ExpenseInfo.AuditTime">
             <summary>
             审核时间
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.RejectUserId">
+            <summary>
+            驳回人
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.RejectReason">
+            <summary>
+            驳回原因
+            </summary>
+        </member>
+        <member name="P:dy.Model.Expense.ExpenseInfo.RejectTime">
+            <summary>
+            驳回时间
             </summary>
         </member>
         <member name="P:dy.Model.Expense.ExpenseInfo.IsDeleted">
@@ -1102,31 +1147,6 @@
         <member name="P:dy.Model.Test.AdvertisementInput.Createdate">
             <summary>
             创建时间
-            </summary>
-        </member>
-        <member name="T:dy.Model.TokenInfo">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:dy.Model.TokenInfo.OpenId">
-            <summary>
-            用户唯一标识
-            </summary>
-        </member>
-        <member name="P:dy.Model.TokenInfo.SessionKey">
-            <summary>
-            密钥
-            </summary>
-        </member>
-        <member name="T:dy.Model.TokenModel">
-            <summary>
-            令牌
-            </summary>
-        </member>
-        <member name="P:dy.Model.TokenModel.OpenId">
-            <summary>
-            用户唯一标识
             </summary>
         </member>
         <member name="T:dy.Model.User.Wx_UserInfo">
