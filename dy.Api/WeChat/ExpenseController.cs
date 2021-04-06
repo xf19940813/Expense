@@ -167,7 +167,7 @@ namespace dy.Api.WeChat
             try
             {
                 var data = await _expenseServices.RejectAsync(dto, openId);
-                return AuditSuccessMsg();
+                return SuccessMsg("驳回成功");
             }
             catch (Exception err)
             {
